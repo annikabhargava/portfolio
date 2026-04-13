@@ -13,8 +13,25 @@ function corsHeaders(origin) {
     "access-control-allow-origin": origin,
     "access-control-allow-methods": "POST, OPTIONS",
     "access-control-allow-headers": "content-type",
+    "vary": "Origin",
     "access-control-max-age": "86400"
   };
+}
+
+function pickAllowedOrigin(requestOrigin, allowedOrigins) {
+  if (!requestOrigin) return null;
+  if (allowedOrigins.length === 0) return null;
+  if (allowedOrigins.includes("*")) return requestOrigin;
+  if (allowedOrigins.includes(requestOrigin)) return requestOrigin;
+
+  // Allow simple wildcard suffix patterns like: https://*.vercel.app
+  for (const entry of allowedOrigins) {
+    const trimmed = entry.trim();
+    if (!trimmed.includes("*")) continue;
+    const [prefix, suffix] = trimmed.split("*");
+    if (requestOrigin.startsWith(prefix) && requestOrigin.endsWith(suffix)) return requestOrigin;
+  }
+  return null;
 }
 
 function extractTextFromAnthropic(content) {
@@ -29,35 +46,42 @@ function extractTextFromAnthropic(content) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const origin = request.headers.get("origin") || "*";
-    const allowedOrigin = env.ALLOWED_ORIGIN || "*";
-    const corsOrigin = allowedOrigin === "*" ? origin : allowedOrigin;
+    const origin = request.headers.get("origin") || "";
+    const allowedOriginsRaw = (env.ALLOWED_ORIGIN || "*")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const corsOrigin = pickAllowedOrigin(origin, allowedOriginsRaw);
+    const cors = corsOrigin ? corsHeaders(corsOrigin) : {};
 
     if (request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: corsHeaders(corsOrigin) });
+      // Always answer preflight with CORS headers if allowed; otherwise 204 without CORS.
+      return new Response(null, { status: 204, headers: cors });
     }
 
     if (url.pathname !== "/api/chat") {
-      return new Response("Not found", { status: 404 });
+      return new Response("Not found", { status: 404, headers: cors });
     }
 
     if (request.method !== "POST") {
-      return new Response("Method not allowed", { status: 405 });
+      return new Response("Method not allowed", { status: 405, headers: cors });
     }
 
-    if (allowedOrigin !== "*" && origin !== allowedOrigin) {
+    if (!corsOrigin) {
+      // No CORS match -> browsers surface this as "Failed to fetch"
+      // (the response may be blocked). We still return CORS-less 403.
       return new Response("Forbidden", { status: 403 });
     }
 
     if (!env.ANTHROPIC_API_KEY) {
-      return new Response("Server is missing ANTHROPIC_API_KEY", { status: 500 });
+      return new Response("Server is missing ANTHROPIC_API_KEY", { status: 500, headers: cors });
     }
 
     let payload;
     try {
       payload = await request.json();
     } catch {
-      return new Response("Invalid JSON", { status: 400, headers: corsHeaders(corsOrigin) });
+      return new Response("Invalid JSON", { status: 400, headers: cors });
     }
 
     const incoming = Array.isArray(payload?.messages) ? payload.messages : [];
@@ -67,7 +91,7 @@ export default {
       .slice(-20);
 
     if (messages.length === 0) {
-      return new Response("Missing messages", { status: 400, headers: corsHeaders(corsOrigin) });
+      return new Response("Missing messages", { status: 400, headers: cors });
     }
 
     const system = [
@@ -97,7 +121,7 @@ export default {
       const errText = await anthropicRes.text().catch(() => "");
       return new Response(`Anthropic error (${anthropicRes.status}): ${errText}`, {
         status: 502,
-        headers: corsHeaders(corsOrigin)
+        headers: cors
       });
     }
 
@@ -106,7 +130,7 @@ export default {
 
     return json(
       { reply: reply || "" },
-      { status: 200, headers: corsHeaders(corsOrigin) }
+      { status: 200, headers: cors }
     );
   }
 };

@@ -30,7 +30,11 @@ wrangler secret put ALLOWED_ORIGIN
 ```
 
 Example value:
-- `https://annikabhargava.github.io`
+- `https://yourdomain.com`
+
+You can also allow multiple origins (comma-separated), for example:
+
+- `https://yourdomain.com,https://your-vercel-project.vercel.app,https://*.vercel.app`
 
 4) Deploy:
 
