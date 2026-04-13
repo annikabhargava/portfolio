@@ -1140,15 +1140,15 @@
       <div class="chat-dot"></div>
       <span>Annika's Portfolio Assistant</span>
     </div>
-    <div class="chat-messages">
+    <div class="chat-messages" id="chatMessages" aria-live="polite">
       <div class="chat-msg user">What kind of UX writing does Annika do?</div>
       <div class="chat-msg ai">Annika specializes in the tricky stuff: AI product copy, conversation design, and the microcopy that sits between a user's intent and a system's response. She's particularly good at making complex features feel simple and trustworthy.</div>
       <div class="chat-msg user">Can she write for AI products specifically?</div>
       <div class="chat-msg ai">That's her sweet spot. She writes onboarding flows that build trust in AI, error states that feel human, and prompt frameworks that keep AI outputs consistent. She doesn't just write about AI. She writes with it.</div>
     </div>
     <div class="chat-input-bar">
-      <input type="text" placeholder="Ask about Annika's work..." disabled>
-      <button>↑</button>
+      <input id="chatInput" type="text" placeholder="Ask about Annika's work..." autocomplete="off">
+      <button id="chatSend" type="button" aria-label="Send message">↑</button>
     </div>
   </div>
 </section>
@@ -1475,6 +1475,104 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 reveals.forEach(el => observer.observe(el));
+
+// --- Live Demo (Claude-powered chat) ---
+// Set this to your deployed proxy endpoint, e.g.
+// https://your-worker.your-subdomain.workers.dev/api/chat
+const CLAUDE_PROXY_URL = window.CLAUDE_PROXY_URL || '';
+
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+function appendChatMessage(role, text) {
+  const container = document.getElementById('chatMessages');
+  if (!container) return null;
+
+  const el = document.createElement('div');
+  el.className = `chat-msg ${role}`;
+  el.innerHTML = escapeHtml(text);
+  container.appendChild(el);
+  container.scrollTop = container.scrollHeight;
+  return el;
+}
+
+function getSeedHistoryFromDom() {
+  const container = document.getElementById('chatMessages');
+  if (!container) return [];
+  return Array.from(container.querySelectorAll('.chat-msg')).map(el => ({
+    role: el.classList.contains('user') ? 'user' : 'assistant',
+    content: el.textContent || ''
+  }));
+}
+
+async function sendToClaude(messages) {
+  if (!CLAUDE_PROXY_URL) {
+    throw new Error("Claude proxy URL isn't configured yet.");
+  }
+
+  const res = await fetch(CLAUDE_PROXY_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages })
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => '');
+    throw new Error(`Proxy error (${res.status}). ${text}`.trim());
+  }
+
+  const data = await res.json();
+  if (!data || typeof data.reply !== 'string') throw new Error('Bad response from proxy.');
+  return data.reply;
+}
+
+(() => {
+  const input = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('chatSend');
+  if (!input || !sendBtn) return;
+
+  let history = getSeedHistoryFromDom();
+  let inFlight = false;
+
+  async function handleSend() {
+    const text = input.value.trim();
+    if (!text || inFlight) return;
+
+    inFlight = true;
+    input.value = '';
+    input.focus();
+    sendBtn.disabled = true;
+
+    appendChatMessage('user', text);
+    history = [...history, { role: 'user', content: text }];
+
+    const typingEl = appendChatMessage('ai', 'Thinking…');
+
+    try {
+      const reply = await sendToClaude(history);
+      if (typingEl) typingEl.remove();
+      appendChatMessage('ai', reply);
+      history = [...history, { role: 'assistant', content: reply }];
+    } catch (err) {
+      if (typingEl) typingEl.remove();
+      appendChatMessage('ai', `I can’t connect to Claude yet. ${err?.message || ''}`.trim());
+    } finally {
+      inFlight = false;
+      sendBtn.disabled = false;
+    }
+  }
+
+  sendBtn.addEventListener('click', handleSend);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') handleSend();
+  });
+})();
 </script>
 
 </body>

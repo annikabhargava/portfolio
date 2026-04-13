@@ -5,6 +5,7 @@ This is Annika's portfolio site.
 ## Deploy / host
 
 - GitHub Pages works well for this (static `index.html`).
+- The "Live Demo" chat can be connected to Claude via a small proxy Worker (so your API key isn't exposed).
 
 ## Keeping GitHub in sync
 
@@ -25,6 +26,19 @@ This is Annika's portfolio site.
 ```
 
 If you omit the message, it uses a default.
+
+## Live Demo: connect Claude
+
+Because GitHub Pages is static, you **can’t** safely call Claude directly from the browser (it would expose your API key).
+
+This repo includes a Cloudflare Worker proxy in `claude-proxy/`.
+
+1) Deploy the Worker (see `claude-proxy/README.md`).
+2) Paste the Worker endpoint into the site by adding this near the top of the `<script>` in `index.html` (before the chat code runs):
+
+```js
+window.CLAUDE_PROXY_URL = "https://YOUR_WORKER.workers.dev/api/chat";
+```
 
 ## Auto-sync on every change (macOS)
 
