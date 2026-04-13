@@ -29,9 +29,9 @@ If you omit the message, it uses a default.
 
 ## Live Demo: connect Claude
 
-Because GitHub Pages is static, you **can’t** safely call Claude directly from the browser (it would expose your API key).
+Because GitHub Pages/Vercel are static, you **can’t** safely call an API that requires a secret key directly from the browser.
 
-This repo includes a Cloudflare Worker proxy in `claude-proxy/`.
+This repo includes a Cloudflare Worker proxy in `claude-proxy/` that uses **Cloudflare Workers AI (open models)** by default.
 
 1) Deploy the Worker (see `claude-proxy/README.md`).
 2) Paste the Worker endpoint into the site by adding this near the top of the `<script>` in `index.html` (before the chat code runs):
