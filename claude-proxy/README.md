@@ -16,14 +16,7 @@ npm i -g wrangler
 wrangler login
 ```
 
-3) Configure secrets (from inside `claude-proxy/`):
-
-```bash
-cd claude-proxy
-wrangler secret put ANTHROPIC_API_KEY
-```
-
-Optional (recommended): restrict who can call the Worker:
+3) Configure CORS allowlist (recommended):
 
 ```bash
 wrangler secret put ALLOWED_ORIGIN
@@ -54,5 +47,16 @@ In `index.html`, set:
 
 ```js
 window.CLAUDE_PROXY_URL = "https://...workers.dev/api/chat";
+```
+
+## Models (Workers AI)
+
+This proxy uses **Cloudflare Workers AI** (open models) by default.
+
+- Default model: `@cf/meta/llama-3.1-8b-instruct`
+- Optional override:
+
+```bash
+wrangler secret put WORKERS_AI_MODEL
 ```
 

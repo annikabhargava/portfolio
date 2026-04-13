@@ -46,6 +46,14 @@ function extractTextFromAnthropic(content) {
     .join("");
 }
 
+function extractTextFromWorkersAI(result) {
+  if (!result) return "";
+  if (typeof result === "string") return result;
+  if (typeof result.response === "string") return result.response;
+  if (Array.isArray(result)) return result.map(extractTextFromWorkersAI).join("\n");
+  return "";
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -70,7 +78,8 @@ export default {
           receivedOrigin: origin || null,
           allowedOriginConfig: env.ALLOWED_ORIGIN || null,
           allowedOriginParsed: allowedOriginsRaw,
-          corsOrigin: corsOrigin || null
+          corsOrigin: corsOrigin || null,
+          hasWorkersAI: Boolean(env.AI)
         },
         { status: 200, headers: corsOrigin ? cors : { "content-type": "application/json; charset=utf-8" } }
       );
@@ -90,8 +99,8 @@ export default {
       return new Response("Forbidden", { status: 403 });
     }
 
-    if (!env.ANTHROPIC_API_KEY) {
-      return new Response("Server is missing ANTHROPIC_API_KEY", { status: 500, headers: cors });
+    if (!env.AI) {
+      return new Response("Server is missing Workers AI binding (env.AI)", { status: 500, headers: cors });
     }
 
     let payload;
@@ -118,32 +127,24 @@ export default {
       "If asked for private info or anything not in the portfolio, say you don’t know and offer what you can share."
     ].join(" ");
 
-    const anthropicRes = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "anthropic-version": "2023-06-01",
-        "x-api-key": env.ANTHROPIC_API_KEY
-      },
-      body: JSON.stringify({
-        model: env.ANTHROPIC_MODEL || "claude-3-5-sonnet-latest",
-        max_tokens: 400,
-        temperature: 0.4,
-        system,
-        messages
-      })
-    });
+    // Workers AI chat models use a different schema than Anthropic.
+    // We'll map our (role, content) messages into a single prompt.
+    const transcript = messages
+      .map((m) => (m.role === "user" ? `User: ${m.content}` : `Assistant: ${m.content}`))
+      .join("\n");
+    const prompt = `${system}\n\n${transcript}\nAssistant:`;
 
-    if (!anthropicRes.ok) {
-      const errText = await anthropicRes.text().catch(() => "");
-      return new Response(`Anthropic error (${anthropicRes.status}): ${errText}`, {
-        status: 502,
-        headers: cors
+    let result;
+    try {
+      result = await env.AI.run(env.WORKERS_AI_MODEL || "@cf/meta/llama-3.1-8b-instruct", {
+        prompt,
+        max_tokens: 300
       });
+    } catch (e) {
+      return new Response(`Workers AI error: ${e?.message || String(e)}`, { status: 502, headers: cors });
     }
 
-    const data = await anthropicRes.json();
-    const reply = extractTextFromAnthropic(data?.content);
+    const reply = extractTextFromWorkersAI(result).trim();
 
     return json(
       { reply: reply || "" },
