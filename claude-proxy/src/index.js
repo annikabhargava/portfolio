@@ -9,8 +9,9 @@ function json(data, init = {}) {
 }
 
 function corsHeaders(origin) {
+  const allowOrigin = origin === "*" ? "*" : origin;
   return {
-    "access-control-allow-origin": origin,
+    "access-control-allow-origin": allowOrigin,
     "access-control-allow-methods": "POST, OPTIONS",
     "access-control-allow-headers": "content-type",
     "vary": "Origin",
@@ -19,9 +20,11 @@ function corsHeaders(origin) {
 }
 
 function pickAllowedOrigin(requestOrigin, allowedOrigins) {
-  if (!requestOrigin) return null;
   if (allowedOrigins.length === 0) return null;
-  if (allowedOrigins.includes("*")) return requestOrigin;
+  // If "*" is allowed, accept requests even when Origin is missing or "null".
+  // For CORS responses, we can safely respond with "*" in that case.
+  if (allowedOrigins.includes("*")) return requestOrigin || "*";
+  if (!requestOrigin) return null;
   if (allowedOrigins.includes(requestOrigin)) return requestOrigin;
 
   // Allow simple wildcard suffix patterns like: https://*.vercel.app
