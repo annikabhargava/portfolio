@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Annika Bhargava — UX Writer & Content Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --paper: #f5f0e8;
+    --paper-warm: #ece5d8;
+    --accent: #c45d3e;
+    --accent-glow: #e8714f;
+    --muted: #8a8175;
+    --ghost: #d4cdc0;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --mono: 'Space Mono', 'Courier New', monospace;
+    --sans: 'Instrument Sans', system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: var(--paper);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  nav.scrolled {
+    border-bottom-color: var(--ghost);
+    box-shadow: 0 1px 20px rgba(0,0,0,0.04);
+  }
+
+  nav .logo {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  nav .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  nav .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+
+  nav .nav-links a:hover { color: var(--accent); }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 28px;
+    height: 20px;
+    position: relative;
+    z-index: 1001;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--ink);
+    position: absolute;
+    left: 0;
+    transition: all 0.3s;
+  }
+
+  .nav-toggle span:nth-child(1) { top: 0; }
+  .nav-toggle span:nth-child(2) { top: 9px; }
+  .nav-toggle span:nth-child(3) { top: 18px; }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    animation: fadeSlideUp 0.8s ease-out both;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 8vw, 8rem);
+    line-height: 0.95;
+    font-weight: 400;
+    max-width: 900px;
+    animation: fadeSlideUp 0.8s ease-out 0.15s both;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero-sub {
+    margin-top: 2.5rem;
+    max-width: 520px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--muted);
+    animation: fadeSlideUp 0.8s ease-out 0.3s both;
+  }
+
+  .hero-cta {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    animation: fadeSlideUp 0.8s ease-out 0.45s both;
+  }
+
+  .btn-primary {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+  .btn-ghost {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 3rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ghost);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    animation: fadeSlideUp 0.8s ease-out 0.6s both;
+  }
+
+  .hero-scroll-hint::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--ghost);
+  }
+
+  .manifesto {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 6rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .manifesto-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    position: sticky;
+    top: 8rem;
+  }
+
+  .manifesto-content p {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    color: #d4cdc0;
+  }
+
+  .manifesto-content p strong { color: var(--paper); font-weight: 400; }
+
+  .work {
+    padding: 8rem 3rem;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5rem;
+    border-bottom: 1px solid var(--ghost);
+    padding-bottom: 1.5rem;
+  }
+
+  .section-header h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+  }
+
+  .section-header .section-count {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .work-filters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--ghost);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  .case-study {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr;
+    gap: 3rem;
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--ghost);
+    cursor: pointer;
+    transition: all 0.4s;
+    position: relative;
+  }
+
+  .case-study:hover { padding-left: 1.5rem; }
+  .case-study:hover .cs-arrow { opacity: 1; transform: translate(0, -50%); }
+
+  .cs-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-8px, -50%);
+    font-size: 1.8rem;
+    color: var(--accent);
+    opacity: 0;
+    transition: all 0.4s;
+  }
+
+  .cs-meta { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .cs-number {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+  }
+
+  .cs-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+
+  .cs-tag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--ghost);
+    color: var(--muted);
+  }
+
+  .cs-tag.ai-tag { border-color: var(--accent); color: var(--accent); }
+
+  .cs-body h3 {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 400;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .cs-body p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 580px;
+  }
+
+  .cs-company {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ghost);
+    margin-top: 0.4rem;
+  }
+
+  .cs-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,10,0.6);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.35s;
+    overflow-y: auto;
+  }
+
+  .cs-modal-overlay.open {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 4rem 2rem;
+  }
+
+  .cs-modal-overlay.visible { opacity: 1; }
+
+  .cs-modal {
+    background: var(--paper);
+    max-width: 780px;
+    width: 100%;
+    padding: 4rem;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.4s ease-out;
+    min-height: 60vh;
+  }
+
+  .cs-modal-overlay.visible .cs-modal { transform: translateY(0); }
+
+  .cs-modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid var(--ghost);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.3s;
+  }
+
+  .cs-modal-close:hover { border-color: var(--ink); color: var(--ink); }
+
+  .cs-modal .modal-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .cs-modal h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+  }
+
+  .cs-modal .modal-meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--ghost);
+    flex-wrap: wrap;
+  }
+
+  .cs-modal .meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
+
+  .cs-modal .meta-item .meta-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .cs-modal .meta-item .meta-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .cs-modal h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: 2.5rem 0 1rem;
+    color: var(--ink);
+  }
+
+  .cs-modal p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .cs-modal .result-stat {
+    display: inline-block;
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin: 1rem 2rem 1rem 0;
+  }
+
+  .cs-modal .result-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  .cs-modal .before-after {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .cs-modal .ba-box {
+    padding: 1.5rem;
+    border: 1px solid var(--ghost);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .cs-modal .ba-box .ba-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .cs-modal .ba-box.before { background: #f0ebe3; }
+  .cs-modal .ba-box.after { background: #e8efe6; }
+
+  .demo-section {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 8rem 3rem;
+    text-align: center;
+  }
+
+  .demo-section .section-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+
+  .demo-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.15;
+  }
+
+  .demo-section h2 em { color: var(--accent); font-style: italic; }
+
+  .demo-section .demo-sub {
+    color: var(--ghost);
+    max-width: 500px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .chat-demo {
+    max-width: 560px;
+    margin: 0 auto;
+    background: #141414;
+    border-radius: 16px;
+    border: 1px solid #2a2a2a;
+    overflow: hidden;
+    text-align: left;
+  }
+
+  .chat-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #2a2a2a;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .chat-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .chat-header span {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .chat-messages {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 280px;
+  }
+
+  .chat-msg {
+    max-width: 85%;
+    padding: 0.9rem 1.2rem;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    opacity: 0;
+    animation: chatBubble 0.5s ease-out forwards;
+  }
+
+  .chat-msg.user {
+    background: #2a2a2a;
+    color: #ccc;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+
+  .chat-msg.ai {
+    background: linear-gradient(135deg, #1e2a1e, #1a2520);
+    color: #c5d4c0;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    border: 1px solid #2a3a2a;
+  }
+
+  .chat-msg:nth-child(1) { animation-delay: 0.5s; }
+  .chat-msg:nth-child(2) { animation-delay: 1.5s; }
+  .chat-msg:nth-child(3) { animation-delay: 2.8s; }
+  .chat-msg:nth-child(4) { animation-delay: 4s; }
+
+  .chat-input-bar {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #2a2a2a;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .chat-input-bar input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #555;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    outline: none;
+  }
+
+  .chat-input-bar button {
+    background: var(--accent);
+    border: none;
+    color: var(--paper);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+  }
+
+  .chat-input-bar button:hover { transform: scale(1.1); }
+
+  .approach {
+    padding: 8rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .approach-card {
+    padding: 2.5rem;
+    border: 1px solid var(--ghost);
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .approach-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .approach-card:hover::before { transform: scaleX(1); }
+  .approach-card:hover { border-color: var(--accent); background: var(--paper-warm); }
+
+  .approach-card .card-number {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .approach-card h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  .approach-card p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  .photos-section {
+    padding: 6rem 3rem;
+    border-top: 1px solid var(--ghost);
+  }
+
+  .photos-section .section-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: 280px 280px;
+    gap: 1rem;
+  }
+
+  .photo-card {
+    background: var(--paper-warm);
+    border: 1px solid var(--ghost);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.4s;
+  }
+
+  .photo-card:hover { transform: scale(1.01); }
+  .photo-card:nth-child(1) { grid-row: 1 / 3; }
+
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    color: var(--ghost);
+  }
+
+  .photo-placeholder svg {
+    width: 40px;
+    height: 40px;
+    stroke: var(--ghost);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .photo-placeholder span {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .about {
+    padding: 8rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+    border-top: 1px solid var(--ghost);
+  }
+
+  .about-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    position: sticky;
+    top: 8rem;
+  }
+
+  .about-content h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 400;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+
+  .about-content p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    max-width: 560px;
+  }
+
+  .about-content p strong { color: var(--ink); font-weight: 600; }
+
+  .companies-strip {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .companies-strip span {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ghost);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--ghost);
+  }
+
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 5rem 3rem 3rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  footer .footer-cta h3 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .footer-link {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 0.2rem;
+    transition: border-color 0.3s;
+  }
+
+  .footer-link:hover { border-bottom-color: var(--accent); }
+
+  footer .footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: flex-end;
+  }
+
+  footer .footer-info p {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #222;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: #444;
+  }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes chatBubble {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .nav-toggle { display: block; }
+    nav .nav-links {
+      position: fixed;
+      top: 0; right: -100%;
+      width: 70%;
+      height: 100vh;
+      background: var(--paper);
+      flex-direction: column;
+      padding: 6rem 2rem 2rem;
+      gap: 1.5rem;
+      transition: right 0.4s;
+      box-shadow: -4px 0 30px rgba(0,0,0,0.1);
+    }
+    nav .nav-links.open { right: 0; }
+    nav { padding: 1.2rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .manifesto { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2rem; }
+    .manifesto-label { position: static; }
+    .work { padding: 5rem 1.5rem; }
+    .case-study { grid-template-columns: 1fr; gap: 1rem; }
+    .approach { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
+    .about { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 2rem; }
+    .about-label { position: static; }
+    .demo-section { padding: 5rem 1.5rem; }
+    .photos-section { padding: 4rem 1.5rem; }
+    .photo-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 220px 220px; }
+    .photo-card:nth-child(1) { grid-row: auto; grid-column: 1 / 3; }
+    footer { padding: 3rem 1.5rem 2rem; }
+    .footer-top { grid-template-columns: 1fr; }
+    footer .footer-info { margin-top: 1rem; }
+    .hero-scroll-hint { left: 1.5rem; }
+    .section-header { flex-direction: column; gap: 0.5rem; }
+    .cs-modal-overlay.open { padding: 1rem; }
+    .cs-modal { padding: 2.5rem 1.5rem; }
+    .cs-modal .before-after { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="logo" onclick="navigateTo('home')">Annika Bhargava</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a onclick="navigateTo('work')">Work</a></li>
+    <li><a onclick="navigateTo('approach')">Approach</a></li>
+    <li><a onclick="navigateTo('photos')">Photos</a></li>
+    <li><a onclick="navigateTo('about')">About</a></li>
+    <li><a onclick="navigateTo('contact')">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-label">UX Writer · Content Designer · AI-Native</div>
+  <h1>Words that make<br>products <em>think</em></h1>
+  <p class="hero-sub">
+    I write the language layer between humans and technology. From interface microcopy to AI conversation design, every string is a decision. I make sure it's the right one.
+  </p>
+  <div class="hero-cta">
+    <a class="btn-primary" onclick="navigateTo('work')">See the work</a>
+    <a class="btn-ghost" onclick="navigateTo('contact')">Get in touch</a>
+  </div>
+  <div class="hero-scroll-hint">Scroll to explore</div>
+</section>
+
+<section class="manifesto">
+  <div class="manifesto-label">My Stance</div>
+  <div class="manifesto-content">
+    <p><strong>AI doesn't replace the writer.</strong> It raises the bar for what writing means. The craft now includes knowing what to prompt, what to rewrite, and what to protect from automation entirely.</p>
+    <p>I work <strong>with</strong> AI as a thinking partner. Drafting, stress-testing, iterating. But <strong>human judgment</strong> stays at the center of every content decision.</p>
+    <p>The result: copy that's faster to ship, harder to improve, and <strong>impossible to mistake for generic output.</strong></p>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="section-header">
+    <h2>Selected work</h2>
+    <span class="section-count">06 Case Studies</span>
+  </div>
+
+  <div class="work-filters">
+    <button class="filter-btn active" onclick="filterWork('all', this)">All</button>
+    <button class="filter-btn" onclick="filterWork('ux', this)">UX Writing</button>
+    <button class="filter-btn" onclick="filterWork('ai', this)">AI-Native</button>
+  </div>
+
+  <article class="case-study reveal" data-type="ux" onclick="openCase(0)">
+    <div class="cs-meta">
+      <span class="cs-number">01</span>
+      <div class="cs-tags">
+        <span class="cs-tag">Checkout Flow</span>
+        <span class="cs-tag">Conversion</span>
+      </div>
+      <span class="cs-company">Capgemini</span>
+    </div>
+    <div class="cs-body">
+      <h3>Rewriting a Checkout Flow That Was Bleeding Revenue</h3>
+      <p>A major e-commerce client was losing 40% of users at payment. The problem wasn't the UI. It was the words. I rewrote every string in the four-step checkout, turning legal-speak into plain language and vague CTAs into confident next steps.</p>
+    </div>
+    <span class="cs-arrow">→</span>
+  </article>
+
+  <article class="case-study reveal" data-type="ux" onclick="openCase(1)">
+    <div class="cs-meta">
+      <span class="cs-number">02</span>
+      <div class="cs-tags">
+        <span class="cs-tag">Error States</span>
+        <span class="cs-tag">Microcopy</span>
+      </div>
+      <span class="cs-company">Microsoft</span>
+    </div>
+    <div class="cs-body">
+      <h3>Nobody Reads Error Messages. So I Made Them Worth Reading.</h3>
+      <p>Audited 120+ error messages across a B2B platform. Most were engineer-written strings that blamed the user or said nothing useful. I rebuilt the entire error taxonomy with a simple framework: what happened, why it matters, what to do next.</p>
+    </div>
+    <span class="cs-arrow">→</span>
+  </article>
+
+  <article class="case-study reveal" data-type="ux" onclick="openCase(2)">
+    <div class="cs-meta">
+      <span class="cs-number">03</span>
+      <div class="cs-tags">
+        <span class="cs-tag">Onboarding</span>
+        <span class="cs-tag">Retention</span>
+      </div>
+      <span class="cs-company">Instrucko</span>
+    </div>
+    <div class="cs-body">
+      <h3>The First Five Minutes: Rewriting Onboarding for an EdTech Platform</h3>
+      <p>New users were signing up but not completing their first lesson. The onboarding was thorough but overwhelming. I cut the copy by 60%, front-loaded the value proposition, and replaced instructional walls of text with progressive disclosure.</p>
+    </div>
+    <span class="cs-arrow">→</span>
+  </article>
+
+  <article class="case-study reveal" data-type="ai" onclick="openCase(3)">
+    <div class="cs-meta">
+      <span class="cs-number">04</span>
+      <div class="cs-tags">
+        <span class="cs-tag ai-tag">AI Onboarding</span>
+        <span class="cs-tag ai-tag">Trust & Transparency</span>
+      </div>
+      <span class="cs-company">Concept Project</span>
+    </div>
+    <div class="cs-body">
+      <h3>Teaching Users to Trust an AI They Can't See</h3>
+      <p>Redesigned the first-run experience for an AI-powered feature, replacing vague "magic" language with honest, specific copy that set real expectations and gave users control over what the AI could and couldn't do.</p>
+    </div>
+    <span class="cs-arrow">→</span>
+  </article>
+
+  <article class="case-study reveal" data-type="ai" onclick="openCase(4)">
+    <div class="cs-meta">
+      <span class="cs-number">05</span>
+      <div class="cs-tags">
+        <span class="cs-tag ai-tag">Conversation Design</span>
+        <span class="cs-tag ai-tag">Fallback Logic</span>
+      </div>
+      <span class="cs-company">Concept Project</span>
+    </div>
+    <div class="cs-body">
+      <h3>When the Bot Doesn't Know: Designing Graceful Failure</h3>
+      <p>Wrote the full conversation flow and fallback logic for an AI assistant's edge cases. The moments where most chatbots lose the user's trust are the moments I focused on hardest.</p>
+    </div>
+    <span class="cs-arrow">→</span>
+  </article>
+
+  <article class="case-study reveal" data-type="ai" onclick="openCase(5)">
+    <div class="cs-meta">
+      <span class="cs-number">06</span>
+      <div class="cs-tags">
+        <span class="cs-tag ai-tag">Copy Audit</span>
+        <span class="cs-tag ai-tag">AI Workflow</span>
+      </div>
+      <span class="cs-company">British Council</span>
+    </div>
+    <div class="cs-body">
+      <h3>200 Strings, 3 Days: An AI-Augmented Copy Audit</h3>
+      <p>Used AI to triage a 200-string product audit, then hand-revised every line. Documented the full human+AI workflow as a repeatable process for the content design team to use after I left.</p>
+    </div>
+    <span class="cs-arrow">→</span>
+  </article>
+</section>
+
+<section class="demo-section" id="demo">
+  <div class="section-label">Live Demo</div>
+  <h2>This isn't a portfolio.<br>It's a <em>proof of craft.</em></h2>
+  <p class="demo-sub">Below is an AI conversation I designed. The prompt logic, the tone guardrails, every fallback. The writing is the work.</p>
+
+  <div class="chat-demo">
+    <div class="chat-header">
+      <div class="chat-dot"></div>
+      <span>Annika's Portfolio Assistant</span>
+    </div>
+    <div class="chat-messages">
+      <div class="chat-msg user">What kind of UX writing does Annika do?</div>
+      <div class="chat-msg ai">Annika specializes in the tricky stuff: AI product copy, conversation design, and the microcopy that sits between a user's intent and a system's response. She's particularly good at making complex features feel simple and trustworthy.</div>
+      <div class="chat-msg user">Can she write for AI products specifically?</div>
+      <div class="chat-msg ai">That's her sweet spot. She writes onboarding flows that build trust in AI, error states that feel human, and prompt frameworks that keep AI outputs consistent. She doesn't just write about AI. She writes with it.</div>
+    </div>
+    <div class="chat-input-bar">
+      <input type="text" placeholder="Ask about Annika's work..." disabled>
+      <button>↑</button>
+    </div>
+  </div>
+</section>
+
+<section class="approach" id="approach">
+  <div class="approach-card reveal">
+    <div class="card-number">01</div>
+    <h3>Language as interface</h3>
+    <p>Every word in a product is a UX decision. I treat copy as a design material, with the same rigor you'd apply to layout, color, or motion.</p>
+  </div>
+  <div class="approach-card reveal">
+    <div class="card-number">02</div>
+    <h3>AI as collaborator</h3>
+    <p>I use AI for what it's good at: speed, variants, stress-testing. And I bring human judgment for what it can't do: brand voice, emotional nuance, and knowing when less is more.</p>
+  </div>
+  <div class="approach-card reveal">
+    <div class="card-number">03</div>
+    <h3>Systems over strings</h3>
+    <p>I don't just write individual lines. I build content systems: naming conventions, voice guidelines, and scalable frameworks that make the next 1,000 strings easier.</p>
+  </div>
+</section>
+
+<section class="photos-section" id="photos">
+  <div class="section-label">The human behind the words</div>
+  <div class="photo-grid">
+    <div class="photo-card">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Your photo here</span>
+      </div>
+    </div>
+    <div class="photo-card">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>At work</span>
+      </div>
+    </div>
+    <div class="photo-card">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Speaking / event</span>
+      </div>
+    </div>
+    <div class="photo-card">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Fun / travel</span>
+      </div>
+    </div>
+    <div class="photo-card">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Creative side</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-label">About</div>
+  <div class="about-content">
+    <h2>Annika Bhargava</h2>
+    <p><strong>UX Writer and Content Designer</strong> with 8+ years shaping how products talk to people. I've spent my career at the intersection of language and technology, writing the words that help people trust, understand, and actually use the products they interact with every day.</p>
+    <p>I believe the best UX writing is invisible. You don't notice it. You just know what to do next. And in the age of AI, that clarity matters more than ever.</p>
+    <p>I've worked across consulting, edtech, and enterprise software. From rewriting checkout flows at Capgemini to building content systems at Microsoft. These days I'm focused on making AI products feel less like black boxes and more like helpful tools you can actually rely on.</p>
+    <div class="companies-strip">
+      <span>Microsoft</span>
+      <span>Capgemini</span>
+      <span>British Council</span>
+      <span>Instrucko</span>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-top">
+    <div class="footer-cta">
+      <h3>Let's make something<br>worth reading.</h3>
+      <div class="footer-links">
+        <a href="mailto:ann101bhargava@gmail.com" class="footer-link">ann101bhargava@gmail.com →</a>
+        <a href="https://www.linkedin.com/in/annika-bhargava-94323a97/" target="_blank" rel="noopener" class="footer-link">LinkedIn →</a>
+      </div>
+    </div>
+    <div class="footer-info">
+      <p>Based in Amsterdam</p>
+      <p>Open to opportunities</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Annika Bhargava</p>
+    <p>Built with care (and a little AI)</p>
+  </div>
+</footer>
+
+<div class="cs-modal-overlay" id="csModal" onclick="closeCase(event)">
+  <div class="cs-modal" id="csModalContent">
+    <button class="cs-modal-close" onclick="closeCase(event, true)">Close ×</button>
+    <div id="csModalBody"></div>
+  </div>
+</div>
+
+<script>
+const caseStudies = [
+  {
+    number: "01",
+    label: "UX Writing · Capgemini",
+    title: "Rewriting a Checkout Flow That Was Bleeding Revenue",
+    meta: [
+      { label: "Client", value: "Capgemini (E-commerce Client)" },
+      { label: "Role", value: "Lead UX Writer" },
+      { label: "Timeline", value: "6 weeks" },
+      { label: "Impact", value: "+23% completion rate" }
+    ],
+    sections: [
+      { heading: "The Problem", text: "The client's e-commerce checkout had a 40% drop-off rate between cart and confirmation. Heatmaps and session recordings pointed to hesitation, not confusion. Users understood the steps. They just didn't feel confident enough to keep going. The microcopy was full of legalese, passive constructions, and CTAs that felt more like warnings than invitations." },
+      { heading: "My Approach", text: "I started by mapping every moment where the user had to make a decision or give up information. Those are the high-stakes moments where copy earns its keep. I audited all 84 strings in the flow, categorized them by function (reassurance, instruction, action, confirmation), and rewrote each one with a simple rule: say what happens next, and make it feel safe." },
+      {
+        heading: "Before & After",
+        beforeAfter: [
+          { before: "By proceeding you acknowledge and accept our terms and conditions regarding payment processing.", after: "Your payment is secure. We'll confirm your order on the next screen." },
+          { before: "Submit Order", after: "Place my order" },
+          { before: "Error: Invalid input detected in field.", after: "Looks like something's off with your card number. Mind double-checking it?" }
+        ]
+      },
+      { heading: "The Outcome", text: "Checkout completion went up 23% in the first month after launch. Support tickets related to payment confusion dropped by 35%. The client's product lead said it was the first time a copy change had made a measurable dent in their conversion funnel." }
+    ],
+    results: [
+      { stat: "+23%", label: "Checkout completion" },
+      { stat: "-35%", label: "Payment support tickets" }
+    ]
+  },
+  {
+    number: "02",
+    label: "UX Writing · Microsoft",
+    title: "Nobody Reads Error Messages. So I Made Them Worth Reading.",
+    meta: [
+      { label: "Company", value: "Microsoft (B2B Platform)" },
+      { label: "Role", value: "UX Writer" },
+      { label: "Scope", value: "120+ error strings" },
+      { label: "Impact", value: "-41% support escalations" }
+    ],
+    sections: [
+      { heading: "The Problem", text: "The platform had over 120 unique error messages, most written by engineers during development. They were technically accurate but humanly useless. Messages like 'Error 4012: Request could not be processed' told the user nothing about what went wrong or what to do about it. Support tickets were piling up for issues users could have resolved themselves." },
+      { heading: "My Approach", text: "I built a three-part error message framework: What happened (in plain language). Why it matters (so the user understands the impact). What to do next (a clear, specific action). I also created a severity scale. Not every error needs the same tone. A failed file upload and a suspended account require very different emotional registers." },
+      {
+        heading: "Before & After",
+        beforeAfter: [
+          { before: "Error 4012: Request could not be processed. Contact your administrator.", after: "We couldn't save your changes because the file is open somewhere else. Try closing it and saving again." },
+          { before: "Authentication failed. Code: AUTH_TIMEOUT_ERR", after: "Your session timed out. This happens after 30 minutes of inactivity. Sign in again to pick up where you left off." },
+          { before: "Operation not permitted.", after: "You don't have permission to edit this file. You can request access from the file owner, or ask your admin to update your role." }
+        ]
+      },
+      { heading: "The Outcome", text: "Support escalations for error-related issues dropped 41% in the quarter after rollout. The framework became part of the team's content standards and is still used by writers across three product lines." }
+    ],
+    results: [
+      { stat: "-41%", label: "Support escalations" },
+      { stat: "120+", label: "Strings rewritten" }
+    ]
+  },
+  {
+    number: "03",
+    label: "UX Writing · Instrucko",
+    title: "The First Five Minutes: Rewriting Onboarding for an EdTech Platform",
+    meta: [
+      { label: "Company", value: "Instrucko" },
+      { label: "Role", value: "UX Writer" },
+      { label: "Timeline", value: "4 weeks" },
+      { label: "Impact", value: "+52% first-lesson completion" }
+    ],
+    sections: [
+      { heading: "The Problem", text: "Instrucko's sign-up numbers looked healthy, but the drop-off between registration and completing a first lesson was alarming. 68% of new users never finished onboarding. The screens were packed with instructions, feature explanations, and setup steps that made a simple language-learning app feel like configuring enterprise software." },
+      { heading: "My Approach", text: "I mapped the existing onboarding flow (9 screens) and timed myself reading every word. It took over three minutes of pure reading before a user reached any actual content. My rewrite focused on progressive disclosure: give people only what they need at each step, and let them discover features by using the product rather than reading about it. I cut the flow to 4 screens and rewrote every line to be action-first." },
+      {
+        heading: "Before & After",
+        beforeAfter: [
+          { before: "Welcome to Instrucko! Instrucko is an innovative language learning platform that uses interactive methodologies to help you achieve fluency. Please complete the following setup steps to personalize your experience.", after: "Let's find you the right starting point. What language do you want to learn?" },
+          { before: "You can track your progress in the Dashboard section. The Dashboard provides comprehensive analytics including lesson completion rates, vocabulary retention scores, and streak tracking.", after: "You'll see your progress after your first lesson. Ready to start?" }
+        ]
+      },
+      { heading: "The Outcome", text: "First-lesson completion rate jumped from 32% to 84%. The average onboarding time dropped from 3+ minutes to 45 seconds. And the product team adopted the progressive disclosure framework for every new feature launch after that." }
+    ],
+    results: [
+      { stat: "+52%", label: "First-lesson completion" },
+      { stat: "45s", label: "Average onboarding time" }
+    ]
+  },
+  {
+    number: "04",
+    label: "AI-Native · Concept Project",
+    title: "Teaching Users to Trust an AI They Can't See",
+    meta: [
+      { label: "Type", value: "Concept / Spec Project" },
+      { label: "Role", value: "UX Writer & Conversation Designer" },
+      { label: "Focus", value: "AI Transparency" },
+      { label: "Impact", value: "+34% feature adoption (projected)" }
+    ],
+    sections: [
+      { heading: "The Problem", text: "AI-powered features often launch with copy that promises magic without explaining mechanics. Users see phrases like 'Smart suggestions powered by AI' and have no idea what that means in practice. What data does it use? Can it be wrong? Can I turn it off? These aren't edge-case questions. They're the first things people want to know. And when the copy doesn't answer them, users either ignore the feature or distrust the entire product." },
+      { heading: "My Approach", text: "I designed a first-run experience built around three principles: tell people what the AI does (not what it is), show them where it's confident and where it's guessing, and always give them a way out. The copy framework included contextual tooltips, a confidence indicator, and an opt-out that didn't feel like a punishment." },
+      {
+        heading: "Before & After",
+        beforeAfter: [
+          { before: "AI-powered recommendations tailored just for you.", after: "We suggest items based on what you've browsed and bought before. You can adjust these anytime in settings." },
+          { before: "Smart compose is drafting your reply...", after: "Here's a draft based on emails like this one. Edit anything, or write your own." }
+        ]
+      },
+      { heading: "The Outcome", text: "This is a concept project, so the numbers are modeled rather than measured. But the framework has been adopted by two teams I've consulted with, and the trust-first approach consistently outperforms 'wow factor' copy in A/B tests across the industry." }
+    ],
+    results: [
+      { stat: "+34%", label: "Feature adoption (projected)" },
+      { stat: "3", label: "Principles in framework" }
+    ]
+  },
+  {
+    number: "05",
+    label: "AI-Native · Concept Project",
+    title: "When the Bot Doesn't Know: Designing Graceful Failure",
+    meta: [
+      { label: "Type", value: "Concept / Spec Project" },
+      { label: "Role", value: "Conversation Designer" },
+      { label: "Focus", value: "Fallback & Error Handling" },
+      { label: "Impact", value: "-22% escalation rate (projected)" }
+    ],
+    sections: [
+      { heading: "The Problem", text: "Most chatbots handle uncertainty the same way: 'I'm sorry, I didn't understand that. Can you rephrase?' It's polite. It's also useless. The user already told you what they needed. Asking them to say it differently is just admitting you don't know what to do. I wanted to design a system that handled failure with the same care most teams reserve for the happy path." },
+      { heading: "My Approach", text: "I mapped out five levels of bot uncertainty, from 'confident match' to 'no idea,' and wrote distinct response strategies for each. The key insight: when a bot isn't sure, the best move is usually to show what it does know and let the user correct course. I also wrote the handoff-to-human flow so that the transition feels like a warm introduction, not an admission of defeat." },
+      {
+        heading: "Before & After",
+        beforeAfter: [
+          { before: "I'm sorry, I didn't understand. Could you try again?", after: "I'm not sure I followed. Are you asking about billing, or about changing your plan? (Or something else entirely.)" },
+          { before: "Transferring you to an agent.", after: "This one's beyond me, but I'll connect you with someone who can help. I'll pass along what we've covered so you don't have to repeat yourself." }
+        ]
+      },
+      { heading: "The Outcome", text: "The five-tier fallback system and handoff framework have been used in two live bot deployments. In both cases, escalation rates dropped and user satisfaction scores after bot interactions went up. The framework is designed to be tone-agnostic, so it works whether the brand voice is playful, formal, or somewhere in between." }
+    ],
+    results: [
+      { stat: "-22%", label: "Escalation rate (projected)" },
+      { stat: "5", label: "Fallback tiers designed" }
+    ]
+  },
+  {
+    number: "06",
+    label: "AI-Native · British Council",
+    title: "200 Strings, 3 Days: An AI-Augmented Copy Audit",
+    meta: [
+      { label: "Company", value: "British Council" },
+      { label: "Role", value: "UX Writer" },
+      { label: "Timeline", value: "3 days" },
+      { label: "Impact", value: "Repeatable process adopted" }
+    ],
+    sections: [
+      { heading: "The Problem", text: "The British Council needed a full copy audit of a digital platform. 200+ UI strings across onboarding, navigation, notifications, and settings. The usual timeline for this kind of work: two to three weeks. I had three days." },
+      { heading: "My Approach", text: "I used AI to handle the first pass: identifying inconsistencies in tone, flagging passive voice, spotting strings that were too long for their containers, and grouping related copy by function. Then I went through every single flagged string by hand. AI is good at pattern recognition. It's not good at knowing when a broken pattern is the right call. The human pass is where the real editing happened." },
+      { heading: "The Workflow", text: "Step one: export all strings into a structured spreadsheet. Step two: run AI analysis for tone, length, voice, and terminology consistency. Step three: human review of every flagged item, rewriting where needed. Step four: document the process so the team could repeat it without me. The deliverable wasn't just 200 rewritten strings. It was a playbook." },
+      { heading: "The Outcome", text: "All 200 strings were audited, categorized, and rewritten in three days. The documented workflow was adopted by the content team and used for two more audits in the following quarter. The approach cut audit time by roughly 60% compared to their previous fully-manual process." }
+    ],
+    results: [
+      { stat: "200+", label: "Strings audited" },
+      { stat: "-60%", label: "Audit time saved" }
+    ]
+  }
+];
+
+function openCase(index) {
+  const cs = caseStudies[index];
+  const modal = document.getElementById('csModal');
+  const body = document.getElementById('csModalBody');
+
+  let html = `
+    <div class="modal-label">${cs.label}</div>
+    <h2>${cs.title}</h2>
+    <div class="modal-meta">
+      ${cs.meta.map(m => `<div class="meta-item"><span class="meta-label">${m.label}</span><span class="meta-value">${m.value}</span></div>`).join('')}
+    </div>
+  `;
+
+  cs.sections.forEach(s => {
+    if (s.heading) html += `<h3>${s.heading}</h3>`;
+    if (s.text) html += `<p>${s.text}</p>`;
+    if (s.beforeAfter) {
+      s.beforeAfter.forEach(ba => {
+        html += `<div class="before-after">
+          <div class="ba-box before"><span class="ba-label">Before</span>${ba.before}</div>
+          <div class="ba-box after"><span class="ba-label">After</span>${ba.after}</div>
+        </div>`;
+      });
+    }
+  });
+
+  if (cs.results) {
+    html += `<div style="margin-top:2rem;">`;
+    cs.results.forEach(r => {
+      html += `<span class="result-stat">${r.stat}</span><span class="result-label">${r.label}</span>`;
+    });
+    html += `</div>`;
+  }
+
+  body.innerHTML = html;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => modal.classList.add('visible'));
+  });
+}
+
+function closeCase(e, force) {
+  const modal = document.getElementById('csModal');
+  if (force || e.target === modal) {
+    modal.classList.remove('visible');
+    setTimeout(() => {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }, 350);
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeCase(null, true);
+});
+
+function filterWork(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.case-study').forEach(cs => {
+    cs.style.display = (type === 'all' || cs.dataset.type === type) ? '' : 'none';
+  });
+}
+
+function navigateTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
