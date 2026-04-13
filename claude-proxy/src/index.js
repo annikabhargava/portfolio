@@ -59,6 +59,20 @@ export default {
       return new Response(null, { status: 204, headers: cors });
     }
 
+    if (url.pathname === "/api/debug") {
+      // Safe debugging info (never returns secrets).
+      return json(
+        {
+          ok: true,
+          receivedOrigin: origin || null,
+          allowedOriginConfig: env.ALLOWED_ORIGIN || null,
+          allowedOriginParsed: allowedOriginsRaw,
+          corsOrigin: corsOrigin || null
+        },
+        { status: 200, headers: corsOrigin ? cors : { "content-type": "application/json; charset=utf-8" } }
+      );
+    }
+
     if (url.pathname !== "/api/chat") {
       return new Response("Not found", { status: 404, headers: cors });
     }
