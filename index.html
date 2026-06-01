@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Annika Bhargava — UX Writer & Content Designer</title>
+<title>Annika Bhargava, UX Writer & Content Designer</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -12,8 +12,8 @@
     --paper-warm: #ece5d8;
     --accent: #c45d3e;
     --accent-glow: #e8714f;
-    --muted: #8a8175;
-    --ghost: #d4cdc0;
+    --muted: #675f55;
+    --ghost: #c8bfb2;
     --serif: 'DM Serif Display', Georgia, serif;
     --mono: 'Space Mono', 'Courier New', monospace;
     --sans: 'Instrument Sans', system-ui, sans-serif;
@@ -133,10 +133,10 @@
 
   .hero h1 {
     font-family: var(--serif);
-    font-size: clamp(3.5rem, 8vw, 8rem);
+    font-size: clamp(3rem, 7.5vw, 7rem);
     line-height: 0.95;
     font-weight: 400;
-    max-width: 900px;
+    max-width: 980px;
     animation: fadeSlideUp 0.8s ease-out 0.15s both;
   }
 
@@ -144,7 +144,7 @@
 
   .hero-sub {
     margin-top: 2.5rem;
-    max-width: 520px;
+    max-width: 620px;
     font-size: 1.05rem;
     line-height: 1.7;
     color: var(--muted);
@@ -246,6 +246,85 @@
   }
 
   .manifesto-content p strong { color: var(--paper); font-weight: 400; }
+
+  .featured-work {
+    padding: 7rem 3rem;
+    border-top: 1px solid var(--ghost);
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .featured-card {
+    appearance: none;
+    background: var(--paper-warm);
+    border: 1px solid var(--ghost);
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font: inherit;
+    min-height: 360px;
+    padding: 2rem;
+    position: relative;
+    text-align: left;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .featured-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+    transform: translateY(-4px);
+  }
+
+  .featured-card .featured-kicker {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+  }
+
+  .featured-card h3 {
+    font-family: var(--serif);
+    font-size: clamp(1.65rem, 2vw, 2.1rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+
+  .featured-card p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-proof {
+    border-top: 1px solid var(--ghost);
+    display: grid;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: 1.25rem;
+  }
+
+  .featured-proof span:first-child {
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .featured-proof span:last-child {
+    color: var(--ink);
+    font-weight: 600;
+  }
 
   .work {
     padding: 8rem 3rem;
@@ -370,6 +449,107 @@
     text-transform: uppercase;
     color: var(--ghost);
     margin-top: 0.4rem;
+  }
+
+  /* ── Card-grid sections (UX Design & UX Research) ── */
+  .card-section {
+    padding: 8rem 3rem;
+    border-top: 1px solid var(--ghost);
+  }
+
+  .cs-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .cs-card {
+    background: var(--paper-warm);
+    border: 1px solid var(--ghost);
+    padding: 2rem 2rem 2.5rem;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .cs-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+
+  .cs-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); border-color: var(--ghost); }
+  .cs-card:hover::before { transform: scaleX(1); }
+
+  .cs-card-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .cs-card h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .cs-card p {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--muted);
+    flex: 1;
+  }
+
+  .cs-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+  }
+
+  .cs-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--ghost);
+  }
+
+  .cs-card-cta {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    transition: color 0.2s;
+  }
+
+  .cs-card:hover .cs-card-cta { color: var(--accent); }
+
+  .cs-card-year {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--ghost);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 768px) {
+    .card-section { padding: 5rem 1.5rem; }
+    .cs-card-grid { grid-template-columns: 1fr; }
   }
 
   .cs-modal-overlay {
@@ -644,11 +824,13 @@
     flex: 1;
     background: none;
     border: none;
-    color: #555;
+    color: #d4cdc0;
     font-family: var(--sans);
     font-size: 0.85rem;
     outline: none;
   }
+
+  .chat-input-bar input::placeholder { color: #8f867a; }
 
   .chat-input-bar button {
     background: var(--accent);
@@ -918,7 +1100,7 @@
     font-family: var(--mono);
     font-size: 0.6rem;
     letter-spacing: 0.1em;
-    color: #444;
+    color: #8a8175;
   }
 
   @keyframes fadeSlideUp {
@@ -980,34 +1162,809 @@
     .cs-modal-overlay.open { padding: 1rem; }
     .cs-modal { padding: 2.5rem 1.5rem; }
     .cs-modal .before-after { grid-template-columns: 1fr; }
+    .modal-inner-nav { display: none; }
+    .featured-work { padding: 5rem 1.5rem; }
+    .featured-grid { grid-template-columns: 1fr; }
   }
+</style>
+
+<style>
+/* ── DARK MODE ── */
+:root {
+  --ink: #0a0a0a;
+  --paper: #f5f0e8;
+  --paper-warm: #ece5d8;
+  --accent: #c45d3e;
+  --accent-glow: #e8714f;
+  --muted: #675f55;
+  --ghost: #c8bfb2;
+  --elevation-1: rgba(0,0,0,0.04);
+  --elevation-2: rgba(0,0,0,0.08);
+  --transition-base: 0.3s ease;
+}
+
+[data-theme="dark"] {
+  --ink: #e8e2d8;
+  --paper: #141210;
+  --paper-warm: #1c1916;
+  --accent: #d4724f;
+  --accent-glow: #e8815e;
+  --muted: #aaa095;
+  --ghost: #3b362f;
+  --elevation-1: rgba(0,0,0,0.25);
+  --elevation-2: rgba(0,0,0,0.45);
+}
+
+[data-theme="dark"] body { background: var(--paper); color: var(--ink); }
+[data-theme="dark"] nav { background: var(--paper); border-bottom-color: var(--ghost); box-shadow: 0 1px 20px var(--elevation-2); }
+[data-theme="dark"] .manifesto { background: #0a0908; }
+[data-theme="dark"] .manifesto-content p { color: #aaa095; }
+[data-theme="dark"] .manifesto-content p strong { color: #e8e2d8; }
+[data-theme="dark"] .cs-modal { background: var(--paper-warm); }
+[data-theme="dark"] .cs-modal .ba-box.before { background: #1a1816; }
+[data-theme="dark"] .cs-modal .ba-box.after { background: #141a12; }
+[data-theme="dark"] .demo-section { background: #0a0908; }
+[data-theme="dark"] footer { background: #0a0908; }
+[data-theme="dark"] .chat-demo { background: #111; border-color: #1e1e1e; }
+[data-theme="dark"] .cs-card-grid .cs-card { background: var(--paper-warm); }
+[data-theme="dark"] .approach-card { background: var(--paper-warm); }
+[data-theme="dark"] nav .nav-links { background: var(--paper); }
+[data-theme="dark"] svg.diagram-svg { filter: invert(0.85) hue-rotate(180deg) saturate(0.6); }
+[data-theme="dark"] .tldr-box { background: #1c1916; border-color: var(--ghost); }
+[data-theme="dark"] .modal-inner-nav { background: var(--paper-warm); border-right-color: var(--ghost); }
+[data-theme="dark"] .collapsible-body { background: #1c1916; }
+
+/* Dark mode toggle button */
+.dark-toggle {
+  background: none;
+  border: 1px solid var(--ghost);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.dark-toggle:hover { border-color: var(--ink); color: var(--ink); }
+
+/* ── IMPROVED MODAL: TL;DR + INNER NAV + COLLAPSIBLE ── */
+.tldr-box {
+  background: var(--paper-warm);
+  border: 1px solid var(--ghost);
+  border-left: 3px solid var(--accent);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2.5rem;
+  border-radius: 0 2px 2px 0;
+}
+
+.tldr-label {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.tldr-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.meta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.meta-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.5rem 0.9rem;
+  background: var(--paper-warm);
+  border: 1px solid var(--ghost);
+  border-radius: 2px;
+}
+
+.meta-chip .chip-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.meta-chip .chip-value {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.modal-inner-nav {
+  display: flex;
+  gap: 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--ghost);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.modal-inner-nav::-webkit-scrollbar { display: none; }
+
+.modal-nav-btn {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.2rem;
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.modal-nav-btn:hover { color: var(--ink); }
+.modal-nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.collapsible-section {
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--ghost);
+  overflow: hidden;
+}
+
+.collapsible-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.collapsible-header:hover { background: var(--paper-warm); }
+
+.collapsible-header h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0;
+}
+
+.collapsible-chevron {
+  font-size: 0.75rem;
+  color: var(--muted);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+.collapsible-section.open .collapsible-chevron { transform: rotate(180deg); }
+
+.collapsible-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+  background: var(--paper);
+}
+
+.collapsible-section.open .collapsible-body {
+  max-height: 800px;
+}
+
+.collapsible-body p {
+  padding: 1rem 1.25rem 1.25rem;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+/* Focus styles for keyboard nav */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); }
+
+/* Microinteractions */
+.cs-card { transition: transform 0.25s cubic-bezier(.22,.68,0,1.2), box-shadow 0.25s, border-color 0.2s; }
+.cs-card:hover { transform: translateY(-5px) scale(1.005); }
+
+.btn-primary { transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,93,62,0.25); }
+
+.case-study { transition: padding-left 0.35s cubic-bezier(.22,.68,0,1.2), background 0.2s; }
+
+/* Smooth section transitions */
+section { transition: opacity 0.1s; }
+
+/* UX Design SVG card visual strip */
+.cs-card-visual {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--paper-warm);
+  border: 1px solid var(--ghost);
+}
+
+.cs-card-visual svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Typographic Preloader */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  color: #f5f0e8;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--mono);
+}
+.preloader-count {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 2rem;
+  color: var(--accent);
+}
+.preloader-text {
+  font-size: clamp(0.8rem, 2vw, 1.2rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.preloader-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Liquid Magnetic Cursor */
+#customCursor {
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.3s, background-color 0.3s;
+}
+#customCursor.hovered {
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  border: 2px solid var(--accent);
+  mix-blend-mode: normal;
+}
+
+/* AI Enablement Grid */
+.team-grid-section {
+  padding: 6rem 3rem;
+  background: var(--paper-warm);
+  border-top: 1px solid var(--ghost);
+}
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.team-grid-card {
+  background: var(--paper);
+  padding: 2.5rem 2rem;
+  border: 1px solid var(--ghost);
+  border-radius: 4px;
+  transition: transform 0.3s var(--transition-base), box-shadow 0.3s var(--transition-base);
+}
+.team-grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.team-icon {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+.team-grid-card h4 {
+  font-family: var(--sans);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+.team-grid-card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #preloader { display: none; }
+  #customCursor { display: none; }
+}
+
+@media (max-width: 900px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .team-grid-section {
+    padding: 4rem 1.5rem;
+  }
+}
+
+/* SPA Full Case Study Styles */
+.full-case-study-container {
+  max-width: 100vw;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  position: relative;
+  box-sizing: border-box;
+}
+.cs-header-banner {
+  background: var(--paper-warm);
+  border-bottom: 1px solid var(--ghost);
+  padding: 6rem 3rem 4rem;
+  position: relative;
+}
+.cs-banner-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.cs-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 2.5rem;
+  transition: transform 0.2s;
+}
+.cs-back-btn:hover {
+  transform: translateX(-5px);
+}
+.cs-flagship-title-area {
+  margin-top: 1.5rem;
+}
+.cs-flagship-label {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+.cs-flagship-title {
+  font-family: var(--sans);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  max-width: 900px;
+}
+.cs-flagship-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+  border-top: 1px solid var(--ghost);
+  padding-top: 2rem;
+}
+.cs-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cs-meta-label {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.cs-meta-value {
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.cs-flagship-body {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 3rem;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 4rem;
+}
+.cs-content-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+.cs-content-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.cs-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.cs-section-num {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.cs-section h3 {
+  font-family: var(--sans);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+.cs-section p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.cs-hero-image-wrapper {
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--ghost);
+  background: var(--paper-warm);
+  margin: 2rem 0;
+}
+.cs-hero-image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  max-height: 500px;
+}
+.cs-interactive-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2.5rem 0;
+}
+.cs-before-after-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.cs-ba-card {
+  background: var(--paper-warm);
+  border: 1px solid var(--ghost);
+  border-radius: 6px;
+  padding: 2rem;
+}
+.cs-ba-card.before {
+  border-left: 4px solid #cc4e4e;
+}
+.cs-ba-card.after {
+  border-left: 4px solid #4ecc8a;
+}
+.cs-ba-title {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+.cs-ba-title.before { color: #cc4e4e; }
+.cs-ba-title.after { color: #4ecc8a; }
+
+.cs-ba-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.cs-ba-item:last-child { margin-bottom: 0; }
+.cs-ba-context {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+.cs-ba-content {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.cs-sidebar-card {
+  background: var(--paper-warm);
+  border: 1px solid var(--ghost);
+  border-radius: 6px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.cs-sidebar-card h4 {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+.cs-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.cs-stat-val {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: var(--sans);
+  line-height: 1.1;
+}
+.cs-stat-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.cs-footer-navigation {
+  border-top: 1px solid var(--ghost);
+  padding: 4rem 3rem;
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.cs-footer-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--sans);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.cs-footer-back-btn:hover {
+  transform: translateX(-5px);
+}
+
+/* Modal metadata, proof table and image styles */
+.modal-image-wrapper {
+  margin: 2rem 0;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--ghost);
+  background: var(--paper-warm);
+}
+.modal-image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  max-height: 400px;
+}
+.modal-meta-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ghost);
+}
+.modal-meta-section h4 {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+.constraints-list {
+  padding-left: 1.25rem;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+.constraints-list li {
+  margin-bottom: 0.5rem;
+}
+.decision-log {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.decision-item {
+  background: var(--paper-warm);
+  border: 1px solid var(--ghost);
+  border-radius: 4px;
+  padding: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.decision-title {
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.decision-rationale {
+  color: var(--muted);
+}
+.proof-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid var(--ghost);
+  border-radius: 4px;
+}
+.proof-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  text-align: left;
+}
+.proof-table th,
+.proof-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--ghost);
+}
+.proof-table th {
+  background: var(--paper-warm);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.proof-table td {
+  vertical-align: top;
+  line-height: 1.5;
+}
+.proof-table td:first-child {
+  border-right: 1px solid var(--ghost);
+  background: rgba(204, 78, 78, 0.02);
+  color: var(--muted);
+}
+.proof-table td:last-child {
+  background: rgba(78, 204, 138, 0.02);
+  font-weight: 500;
+}
+
+/* Concept Tag Badge */
+.concept-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  background: rgba(196, 93, 62, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(196, 93, 62, 0.3);
+  margin-left: 0.75rem;
+  vertical-align: middle;
+}
+
+/* Editorial Archive Grid Section */
+.archive-section {
+  margin-top: 4rem;
+  text-align: center;
+}
+.archive-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  background: var(--paper-warm);
+  border: 1px solid var(--ghost);
+  border-radius: 4px;
+  padding: 1.25rem 2.5rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+.archive-toggle-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.archive-toggle-btn .chevron {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+.archive-toggle-btn[aria-expanded="true"] .chevron {
+  transform: rotate(180deg);
+}
+.archive-grid-wrapper {
+  margin-top: 3rem;
+  text-align: left;
+}
+
+/* View transition styles */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+#main-content,
+#full-case-study {
+  contain: layout;
+}
 </style>
 </head>
 <body>
 
+<div id="preloader" role="status" aria-live="polite" aria-label="Loading portfolio">
+  <div class="preloader-count" id="preloaderCount">00</div>
+  <div class="preloader-text" id="preloaderText">WORDS ARE SYSTEM DESIGN.</div>
+</div>
+
+<div id="customCursor" aria-hidden="true"></div>
+
+<div id="main-content">
+
 <nav id="navbar">
-  <a class="logo" onclick="navigateTo('home')">Annika Bhargava</a>
+  <a class="logo" href="#home" onclick="navigateTo('home'); return false;">Annika Bhargava</a>
   <ul class="nav-links" id="navLinks">
-    <li><a onclick="navigateTo('work')">Work</a></li>
-    <li><a onclick="navigateTo('approach')">Approach</a></li>
-    <li><a onclick="navigateTo('photos')">Photos</a></li>
-    <li><a onclick="navigateTo('about')">About</a></li>
-    <li><a onclick="navigateTo('contact')">Contact</a></li>
+    <li><a href="#portfolio" onclick="navigateTo('portfolio'); return false;">Portfolio</a></li>
+    <li><a href="#team-enablement" onclick="navigateTo('team-enablement'); return false;">AI Enablement</a></li>
+    <li><a href="#demo" onclick="navigateTo('demo'); return false;">Assistant</a></li>
+    <li><a href="#about" onclick="navigateTo('about'); return false;">About</a></li>
+    <li><a href="#contact" onclick="navigateTo('contact'); return false;">Contact</a></li>
   </ul>
-  <button class="nav-toggle" id="navToggle" onclick="toggleNav()">
-    <span></span><span></span><span></span>
-  </button>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" aria-label="Toggle dark mode" aria-pressed="false">
+      <span id="darkIcon">○</span> <span id="darkLabel">Dark</span>
+    </button>
+    <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <section class="hero" id="home">
-  <div class="hero-label">UX Writer · Content Designer · AI-Native</div>
-  <h1>Words that make<br>products <em>think</em></h1>
+  <div class="hero-label">UX Writer · AI Enablement Strategist · Research-Led</div>
+  <h1>I design words, flows, and trust systems for <em>complex products & AI</em></h1>
   <p class="hero-sub">
-    I write the language layer between humans and technology. From interface microcopy to AI conversation design, every string is a decision. I make sure it's the right one.
+    I help people understand what happens next across onboarding, checkout, error states, and AI-powered interactions. Beyond writing, I help teams establish frameworks and playbooks to adopt AI safely.
   </p>
   <div class="hero-cta">
-    <a class="btn-primary" onclick="navigateTo('work')">See the work</a>
-    <a class="btn-ghost" onclick="navigateTo('contact')">Get in touch</a>
+    <a class="btn-primary" href="#featured" onclick="navigateTo('featured'); return false;">See featured work</a>
+    <a class="btn-ghost" href="#contact" onclick="navigateTo('contact'); return false;">Get in touch</a>
   </div>
   <div class="hero-scroll-hint">Scroll to explore</div>
 </section>
@@ -1015,125 +1972,366 @@
 <section class="manifesto">
   <div class="manifesto-label">My Stance</div>
   <div class="manifesto-content">
-    <p><strong>AI doesn't replace the writer.</strong> It raises the bar for what writing means. The craft now includes knowing what to prompt, what to rewrite, and what to protect from automation entirely.</p>
-    <p>I work <strong>with</strong> AI as a thinking partner. Drafting, stress-testing, iterating. But <strong>human judgment</strong> stays at the center of every content decision.</p>
-    <p>The result: copy that's faster to ship, harder to improve, and <strong>impossible to mistake for generic output.</strong></p>
+    <p><strong>Good product language is evidence of good product thinking.</strong> It shows the user what changed, what matters, and what they can safely do next.</p>
+    <p>In AI products, that means designing for <strong>calibrated trust</strong>: clear limits, visible reasoning, graceful failure, and user control instead of vague promises of magic.</p>
+    <p>I help companies navigate the transition to AI, showing teams how to combine generative tools with strict content guidelines and human-in-the-loop editing to preserve user trust.</p>
   </div>
 </section>
 
-<section class="work" id="work">
+<section class="team-grid-section" id="team-enablement">
   <div class="section-header">
-    <h2>Selected work</h2>
-    <span class="section-count">06 Case Studies</span>
+    <h2>AI Enablement & Team Adoption</h2>
+    <span class="section-count">How I Help Companies Scale</span>
   </div>
-
-  <div class="work-filters">
-    <button class="filter-btn active" onclick="filterWork('all', this)">All</button>
-    <button class="filter-btn" onclick="filterWork('ux', this)">UX Writing</button>
-    <button class="filter-btn" onclick="filterWork('ai', this)">AI-Native</button>
+  <div class="team-grid">
+    <div class="team-grid-card reveal">
+      <div class="team-icon">🤖</div>
+      <h4>AI Content Playbooks</h4>
+      <p>Standardizing prompt libraries, human-in-the-loop workflows, and QA templates for teams integrating generative LLMs into their product stack.</p>
+    </div>
+    <div class="team-grid-card reveal">
+      <div class="team-icon">⚖️</div>
+      <h4>Calibrated Trust Rubrics</h4>
+      <p>Designing guidelines, confidence metrics, and clear fallback pathways for AI applications to manage user trust during inevitable edge-case errors.</p>
+    </div>
+    <div class="team-grid-card reveal">
+      <div class="team-icon">🧠</div>
+      <h4>Enablement Workshops</h4>
+      <p>Facilitating training for product, design, and content departments to scale AI writing workflows safely, consistently, and ethically.</p>
+    </div>
   </div>
+</section>
 
-  <article class="case-study reveal" data-type="ux" onclick="openCase(0)">
-    <div class="cs-meta">
-      <span class="cs-number">01</span>
-      <div class="cs-tags">
-        <span class="cs-tag">Checkout Flow</span>
-        <span class="cs-tag">Conversion</span>
+<section class="featured-work" id="featured">
+  <div class="section-header">
+    <h2>Featured Work</h2>
+    <span class="section-count">03 Proof Points</span>
+  </div>
+  <div class="featured-grid">
+    <button class="featured-card reveal" type="button" onclick="openCase(0)">
+      <span class="featured-kicker">UX Writing · Conversion</span>
+      <h3>Checkout copy that reduced hesitation</h3>
+      <p>Reframed legal-heavy payment copy into clear, confidence-building next steps across a four-step checkout flow.</p>
+      <div class="featured-proof">
+        <span>Evidence</span>
+        <span>+23% checkout completion</span>
       </div>
-      <span class="cs-company">Capgemini</span>
-    </div>
-    <div class="cs-body">
-      <h3>Rewriting a Checkout Flow That Was Bleeding Revenue</h3>
-      <p>A major e-commerce client was losing 40% of users at payment. The problem wasn't the UI. It was the words. I rewrote every string in the four-step checkout, turning legal-speak into plain language and vague CTAs into confident next steps.</p>
-    </div>
-    <span class="cs-arrow">→</span>
-  </article>
+    </button>
+    <button class="featured-card reveal" type="button" onclick="openStudy(researchStudies, 2)">
+      <span class="featured-kicker">UX Research · AI Trust</span>
+      <h3>Research that changed the AI voice strategy</h3>
+      <p>Survey and think-aloud research showed that calibrated uncertainty built more trust than confident-sounding advice.</p>
+      <div class="featured-proof">
+        <span>Evidence</span>
+        <span>450 survey respondents + 15 sessions</span>
+      </div>
+    </button>
+    <button class="featured-card reveal" type="button" onclick="openCase(5)">
+      <span class="featured-kicker">Content Systems · AI Workflow</span>
+      <h3>A faster audit process with human judgment intact</h3>
+      <p>Used AI for pattern-finding, then hand-edited every flagged string and turned the workflow into a repeatable team playbook.</p>
+      <div class="featured-proof">
+        <span>Evidence</span>
+        <span>200+ strings audited in 3 days</span>
+      </div>
+    </button>
+  </div>
+</section>
 
-  <article class="case-study reveal" data-type="ux" onclick="openCase(1)">
-    <div class="cs-meta">
-      <span class="cs-number">02</span>
-      <div class="cs-tags">
-        <span class="cs-tag">Error States</span>
-        <span class="cs-tag">Microcopy</span>
+<section class="card-section" id="portfolio">
+  <div class="section-header">
+    <h2>Selected Portfolio</h2>
+    <span class="section-count">03 Featured · 09 Archived</span>
+  </div>
+  
+  <div class="cs-card-grid">
+    <!-- Featured Card 1: PawPath Flagship -->
+    <div class="cs-card reveal" onclick="window.location.hash = '#/case/pawpath'" tabindex="0" role="button" aria-label="Open flagship case study: PawPath Redesign">
+      <div class="cs-card-visual">
+        <svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg" class="diagram-svg">
+          <rect x="10" y="15" width="80" height="70" rx="6" fill="none" stroke="#c45d3e" stroke-width="1.5" opacity="0.4"/>
+          <rect x="20" y="25" width="60" height="8" rx="2" fill="#c45d3e" opacity="0.3"/>
+          <rect x="20" y="38" width="45" height="5" rx="2" fill="#8a8175" opacity="0.3"/>
+          <rect x="20" y="48" width="50" height="5" rx="2" fill="#8a8175" opacity="0.2"/>
+          <rect x="20" y="58" width="38" height="5" rx="2" fill="#8a8175" opacity="0.2"/>
+          <path d="M 95 50 L 120 50" stroke="#c45d3e" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.6"/>
+          <polygon points="118,46 126,50 118,54" fill="#c45d3e" opacity="0.6"/>
+          <rect x="130" y="10" width="85" height="30" rx="6" fill="none" stroke="#c45d3e" stroke-width="1.5" opacity="0.6"/>
+          <text x="172" y="30" text-anchor="middle" font-size="8" fill="#c45d3e" font-family="monospace" opacity="0.8">Mochi</text>
+          <rect x="130" y="47" width="85" height="46" rx="6" fill="none" stroke="#8a8175" stroke-width="1" opacity="0.4"/>
+          <rect x="138" y="55" width="50" height="4" rx="2" fill="#8a8175" opacity="0.25"/>
+          <rect x="138" y="63" width="60" height="4" rx="2" fill="#8a8175" opacity="0.2"/>
+          <rect x="138" y="71" width="40" height="4" rx="2" fill="#8a8175" opacity="0.2"/>
+          <circle cx="200" cy="26" r="8" fill="none" stroke="#c45d3e" stroke-width="1.5" opacity="0.5"/>
+          <path d="M 222 50 L 248 50" stroke="#c45d3e" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.6"/>
+          <polygon points="246,46 254,50 246,54" fill="#c45d3e" opacity="0.6"/>
+          <rect x="258" y="15" width="52" height="70" rx="6" fill="none" stroke="#c45d3e" stroke-width="2" opacity="0.8"/>
+          <rect x="264" y="24" width="40" height="6" rx="2" fill="#c45d3e" opacity="0.5"/>
+          <rect x="264" y="35" width="30" height="4" rx="2" fill="#c45d3e" opacity="0.3"/>
+          <rect x="264" y="44" width="35" height="4" rx="2" fill="#8a8175" opacity="0.25"/>
+          <rect x="264" y="53" width="28" height="4" rx="2" fill="#8a8175" opacity="0.2"/>
+          <rect x="264" y="62" width="32" height="4" rx="2" fill="#8a8175" opacity="0.2"/>
+          <rect x="264" y="71" width="36" height="8" rx="3" fill="#c45d3e" opacity="0.4"/>
+          <text x="10" y="95" font-size="6" fill="#8a8175" font-family="monospace" opacity="0.6">Before: Category tabs</text>
+          <text x="258" y="95" font-size="6" fill="#c45d3e" font-family="monospace" opacity="0.8">After: Pet timeline</text>
+        </svg>
       </div>
-      <span class="cs-company">Microsoft</span>
+      <span class="cs-card-label">Pet Health · Mobile <span class="concept-badge">Concept</span></span>
+      <h3>PawPath: Redesigning the Pet Health Dashboard</h3>
+      <p>Pet owners were managing three to five apps to track their animals' health. PawPath had the right data and completely the wrong structure. I rebuilt the information architecture from scratch around how owners actually think: by pet, not by category.</p>
+      <div class="cs-card-tags">
+        <span class="cs-tag">Information Architecture</span>
+        <span class="cs-tag">Mobile Design</span>
+        <span class="cs-tag">Design Systems</span>
+      </div>
+      <div class="cs-card-footer">
+        <span class="cs-card-cta">Read flagship teardown →</span>
+        <span class="cs-card-year">2024</span>
+      </div>
     </div>
-    <div class="cs-body">
+
+    <!-- Featured Card 2: Microsoft -->
+    <div class="cs-card reveal" onclick="openCase(1)" tabindex="0" role="button" aria-label="Open case study: Error Messages">
+      <span class="cs-card-label">Error States · Microcopy</span>
       <h3>Nobody Reads Error Messages. So I Made Them Worth Reading.</h3>
-      <p>Audited 120+ error messages across a B2B platform. Most were engineer-written strings that blamed the user or said nothing useful. I rebuilt the entire error taxonomy with a simple framework: what happened, why it matters, what to do next.</p>
-    </div>
-    <span class="cs-arrow">→</span>
-  </article>
-
-  <article class="case-study reveal" data-type="ux" onclick="openCase(2)">
-    <div class="cs-meta">
-      <span class="cs-number">03</span>
-      <div class="cs-tags">
-        <span class="cs-tag">Onboarding</span>
-        <span class="cs-tag">Retention</span>
+      <p>Audited 120+ error messages across a B2B platform. Most blamed the user or said nothing useful. I rebuilt the entire error taxonomy with a three-part framework, translating the standards into system instructions for Copilot.</p>
+      <div class="cs-card-tags">
+        <span class="cs-tag">Error States</span>
+        <span class="cs-tag">Content Systems</span>
+        <span class="cs-tag ai-tag">AI Alignment</span>
       </div>
-      <span class="cs-company">Instrucko</span>
-    </div>
-    <div class="cs-body">
-      <h3>The First Five Minutes: Rewriting Onboarding for an EdTech Platform</h3>
-      <p>New users were signing up but not completing their first lesson. The onboarding was thorough but overwhelming. I cut the copy by 60%, front-loaded the value proposition, and replaced instructional walls of text with progressive disclosure.</p>
-    </div>
-    <span class="cs-arrow">→</span>
-  </article>
-
-  <article class="case-study reveal" data-type="ai" onclick="openCase(3)">
-    <div class="cs-meta">
-      <span class="cs-number">04</span>
-      <div class="cs-tags">
-        <span class="cs-tag ai-tag">AI Onboarding</span>
-        <span class="cs-tag ai-tag">Trust & Transparency</span>
+      <div class="cs-card-footer">
+        <span class="cs-card-cta">Read case study →</span>
+        <span class="cs-card-year">Microsoft</span>
       </div>
-      <span class="cs-company">Concept Project</span>
     </div>
-    <div class="cs-body">
-      <h3>Teaching Users to Trust an AI They Can't See</h3>
-      <p>Redesigned the first-run experience for an AI-powered feature, replacing vague "magic" language with honest, specific copy that set real expectations and gave users control over what the AI could and couldn't do.</p>
-    </div>
-    <span class="cs-arrow">→</span>
-  </article>
 
-  <article class="case-study reveal" data-type="ai" onclick="openCase(4)">
-    <div class="cs-meta">
-      <span class="cs-number">05</span>
-      <div class="cs-tags">
-        <span class="cs-tag ai-tag">Conversation Design</span>
-        <span class="cs-tag ai-tag">Fallback Logic</span>
-      </div>
-      <span class="cs-company">Concept Project</span>
-    </div>
-    <div class="cs-body">
-      <h3>When the Bot Doesn't Know: Designing Graceful Failure</h3>
-      <p>Wrote the full conversation flow and fallback logic for an AI assistant's edge cases. The moments where most chatbots lose the user's trust are the moments I focused on hardest.</p>
-    </div>
-    <span class="cs-arrow">→</span>
-  </article>
-
-  <article class="case-study reveal" data-type="ai" onclick="openCase(5)">
-    <div class="cs-meta">
-      <span class="cs-number">06</span>
-      <div class="cs-tags">
-        <span class="cs-tag ai-tag">Copy Audit</span>
+    <!-- Featured Card 3: British Council -->
+    <div class="cs-card reveal" onclick="openCase(5)" tabindex="0" role="button" aria-label="Open case study: AI Audit">
+      <span class="cs-card-label">Copy Audit · AI Workflow</span>
+      <h3>Scaling Copy Audits with AI and Team Enablement</h3>
+      <p>Trained a 12-person content team on a hybrid human-in-the-loop AI prompt playbook, completing a 200+ string audit in three days and establishing permanent 60% operational efficiency.</p>
+      <div class="cs-card-tags">
         <span class="cs-tag ai-tag">AI Workflow</span>
+        <span class="cs-tag">Copy Audit</span>
+        <span class="cs-tag ai-tag">Enablement</span>
       </div>
-      <span class="cs-company">British Council</span>
+      <div class="cs-card-footer">
+        <span class="cs-card-cta">Read case study →</span>
+        <span class="cs-card-year">British Council</span>
+      </div>
     </div>
-    <div class="cs-body">
-      <h3>200 Strings, 3 Days: An AI-Augmented Copy Audit</h3>
-      <p>Used AI to triage a 200-string product audit, then hand-revised every line. Documented the full human+AI workflow as a repeatable process for the content design team to use after I left.</p>
+  </div>
+
+  <!-- Archive Section -->
+  <div class="archive-section">
+    <button class="archive-toggle-btn" id="archiveToggleBtn" onclick="toggleArchive()" aria-expanded="false" aria-controls="archiveGridWrapper">
+      View Case Study Archive (09 Projects) <span class="chevron">▼</span>
+    </button>
+    
+    <div class="archive-grid-wrapper" id="archiveGridWrapper" style="max-height: 0; overflow: hidden;">
+      <div class="cs-card-grid" id="archiveGrid">
+        
+        <!-- Capgemini (Card 0) -->
+        <div class="cs-card" onclick="openCase(0)" tabindex="0" role="button" aria-label="Open case study: Rewriting a Checkout Flow">
+          <span class="cs-card-label">Checkout Flow · Conversion</span>
+          <h3>Rewriting a Checkout Flow That Was Bleeding Revenue</h3>
+          <p>A major e-commerce client was losing 40% of users at payment. I rewrote every string in the four-step checkout, turning legal-speak into confident next steps.</p>
+          <div class="cs-card-tags">
+            <span class="cs-tag">Microcopy</span>
+            <span class="cs-tag">Conversion</span>
+          </div>
+          <div class="cs-card-footer">
+            <span class="cs-card-cta">Read case study →</span>
+            <span class="cs-card-year">Capgemini</span>
+          </div>
+        </div>
+
+        <!-- Instrucko (Card 2) -->
+        <div class="cs-card" onclick="openCase(2)" tabindex="0" role="button" aria-label="Open case study: Onboarding">
+          <span class="cs-card-label">Onboarding · Retention</span>
+          <h3>The First Five Minutes: Rewriting Onboarding for an EdTech Platform</h3>
+          <p>New users were signing up but not completing their first lesson. I cut the copy by 60%, front-loaded value, and replaced walls of text with progressive disclosure.</p>
+          <div class="cs-card-tags">
+            <span class="cs-tag">Onboarding</span>
+            <span class="cs-tag">Retention</span>
+          </div>
+          <div class="cs-card-footer">
+            <span class="cs-card-cta">Read case study →</span>
+            <span class="cs-card-year">Instrucko</span>
+          </div>
+        </div>
+
+        <!-- AI Onboarding (Card 3) -->
+        <div class="cs-card" onclick="openCase(3)" tabindex="0" role="button" aria-label="Open case study: AI Trust">
+          <span class="cs-card-label">AI Onboarding · Trust <span class="concept-badge">Concept</span></span>
+          <h3>Teaching Users to Trust an AI They Can't See</h3>
+          <p>Redesigned the first-run experience for an AI-powered feature, replacing vague "magic" language with honest copy that set real expectations and gave users real control.</p>
+          <div class="cs-card-tags">
+            <span class="cs-tag ai-tag">AI Onboarding</span>
+            <span class="cs-tag ai-tag">Trust</span>
+          </div>
+          <div class="cs-card-footer">
+            <span class="cs-card-cta">Read case study →</span>
+            <span class="cs-card-year">Concept</span>
+          </div>
+        </div>
+
+        <!-- Bot Fallback (Card 4) -->
+        <div class="cs-card" onclick="openCase(4)" tabindex="0" role="button" aria-label="Open case study: Conversation Design">
+          <span class="cs-card-label">Conversation Design · Fallback Logic <span class="concept-badge">Concept</span></span>
+          <h3>When the Bot Doesn't Know: Designing Graceful Failure</h3>
+          <p>Wrote the full conversation flow and fallback logic for an AI assistant's edge cases. The moments where most chatbots lose trust are the ones I focused on hardest.</p>
+          <div class="cs-card-tags">
+            <span class="cs-tag ai-tag">Conversation Design</span>
+            <span class="cs-tag ai-tag">Fallback Logic</span>
+          </div>
+          <div class="cs-card-footer">
+            <span class="cs-card-cta">Read case study →</span>
+            <span class="cs-card-year">Concept</span>
+          </div>
+        </div>
+
+        <!-- Bloom (Design Study 1) -->
+        <div class="cs-card" onclick="openStudy(designStudies, 1)" tabindex="0" role="button" aria-label="Open case study: Bloom Check-in">
+          <div class="cs-card-visual">
+            <svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg" class="diagram-svg">
+              <rect x="10" y="20" width="120" height="60" rx="6" fill="none" stroke="#8a8175" stroke-width="1" opacity="0.4"/>
+              <text x="70" y="38" text-anchor="middle" font-size="7" fill="#8a8175" font-family="monospace" opacity="0.6">How are you feeling?</text>
+              <rect x="20" y="44" width="12" height="12" rx="2" fill="#8a8175" opacity="0.2"/>
+              <rect x="36" y="44" width="12" height="12" rx="2" fill="#8a8175" opacity="0.2"/>
+              <rect x="52" y="44" width="12" height="12" rx="2" fill="#8a8175" opacity="0.2"/>
+              <rect x="68" y="44" width="12" height="12" rx="2" fill="#8a8175" opacity="0.2"/>
+              <rect x="84" y="44" width="12" height="12" rx="2" fill="#8a8175" opacity="0.2"/>
+              <rect x="100" y="44" width="12" height="12" rx="2" fill="#8a8175" opacity="0.2"/>
+              <text x="20" y="71" font-size="5.5" fill="#8a8175" font-family="monospace" opacity="0.5">1   2   3   4   5   6</text>
+              <text x="15" y="87" font-size="5.5" fill="#8a8175" font-family="monospace" opacity="0.4">Old: rate your mood 1-10</text>
+              <path d="M 138 50 L 162 50" stroke="#c45d3e" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.7"/>
+              <polygon points="160,46 168,50 160,54" fill="#c45d3e" opacity="0.7"/>
+              <rect x="170" y="15" width="140" height="70" rx="6" fill="none" stroke="#c45d3e" stroke-width="1.5" opacity="0.7"/>
+              <text x="240" y="32" text-anchor="middle" font-size="7" fill="#c45d3e" font-family="monospace" opacity="0.8">That sounds hard. You OK?</text>
+              <circle cx="193" cy="52" r="10" fill="none" stroke="#c45d3e" stroke-width="1.5" opacity="0.6"/>
+              <text x="193" y="56" text-anchor="middle" font-size="9" opacity="0.7">😞</text>
+              <circle cx="218" cy="52" r="10" fill="none" stroke="#c45d3e" stroke-width="1.5" opacity="0.5"/>
+              <text x="218" y="56" text-anchor="middle" font-size="9" opacity="0.6">😐</text>
+              <circle cx="243" cy="52" r="10" fill="none" stroke="#c45d3e" stroke-width="1.5" opacity="0.5"/>
+              <text x="243" y="56" text-anchor="middle" font-size="9" opacity="0.6">🙂</text>
+              <circle cx="268" cy="52" r="10" fill="none" stroke="#c45d3e" stroke-width="1.5" opacity="0.5"/>
+              <text x="268" y="56" text-anchor="middle" font-size="9" opacity="0.6">😊</text>
+              <rect x="182" y="68" width="50" height="10" rx="3" fill="none" stroke="#c45d3e" stroke-width="1" opacity="0.4"/>
+              <text x="207" y="76" text-anchor="middle" font-size="6" fill="#c45d3e" font-family="monospace" opacity="0.6">just listen</text>
+              <text x="175" y="92" font-size="5.5" fill="#c45d3e" font-family="monospace" opacity="0.7">New: emotional spectrum</text>
+            </svg>
+          </div>
+          <span class="cs-card-label">New Moms · Emotional Design <span class="concept-badge">Concept</span></span>
+          <h3>Bloom: A Kinder Postpartum Check-In</h3>
+          <p>Bloom's wellness check-in was designed by engineers. I redesigned the entire experience around emotional permission, validating the feeling before trying to measure it.</p>
+          <div class="cs-card-tags">
+            <span class="cs-tag">Emotional Design</span>
+            <span class="cs-tag">Onboarding</span>
+            <span class="cs-tag">Mobile</span>
+          </div>
+          <div class="cs-card-footer">
+            <span class="cs-card-cta">Read case study →</span>
+            <span class="cs-card-year">2025</span>
+          </div>
+        </div>
+
+        <!-- Nuzzle (Design Study 2) -->
+        <div class="cs-card" onclick="openStudy(designStudies, 2)" tabindex="0" role="button" aria-label="Open case study: Nuzzle Matching">
+          <div class="cs-card-visual">
+            <svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg" class="diagram-svg">
+              <rect x="10" y="8" width="90" height="22" rx="10" fill="none" stroke="#8a8175" stroke-width="1" opacity="0.5"/>
+              <text x="55" y="23" text-anchor="middle" font-size="6.5" fill="#8a8175" font-family="sans-serif" opacity="0.7">How do your Sundays look?</text>
+              <rect x="50" y="36" width="80" height="20" rx="10" fill="#c45d3e" opacity="0.15"/>
+              <text x="90" y="50" text-anchor="middle" font-size="6.5" fill="#c45d3e" font-family="sans-serif" opacity="0.8">Quiet. Coffee. Long walks.</text>
+              <rect x="10" y="62" width="90" height="20" rx="10" fill="none" stroke="#8a8175" stroke-width="1" opacity="0.5"/>
+              <text x="55" y="76" text-anchor="middle" font-size="6.5" fill="#8a8175" font-family="sans-serif" opacity="0.7">Do you have outdoor space?</text>
+              <path d="M 148 50 L 168 50" stroke="#c45d3e" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.7"/>
+              <polygon points="166,46 174,50 166,54" fill="#c45d3e" opacity="0.7"/>
+              <rect x="178" y="10" width="130" height="80" rx="6" fill="none" stroke="#c45d3e" stroke-width="1.5" opacity="0.8"/>
+              <circle cx="200" cy="35" r="14" fill="none" stroke="#c45d3e" stroke-width="1.5" opacity="0.6"/>
+              <text x="200" y="40" text-anchor="middle" font-size="14" opacity="0.7">🐕</text>
+              <text x="225" y="28" font-size="8" fill="#c45d3e" font-family="monospace" font-weight="bold" opacity="0.9">Biscuit</text>
+              <rect x="218" y="32" width="40" height="5" rx="2" fill="#c45d3e" opacity="0.35"/>
+              <text x="220" y="38" font-size="5.5" fill="#8a8175" font-family="monospace" opacity="0.6">92% match</text>
+              <rect x="186" y="55" width="114" height="4" rx="2" fill="#8a8175" opacity="0.15"/>
+              <rect x="186" y="63" width="100" height="4" rx="2" fill="#8a8175" opacity="0.12"/>
+              <rect x="186" y="71" width="80" height="4" rx="2" fill="#8a8175" opacity="0.1"/>
+              <text x="183" y="97" font-size="5.5" fill="#c45d3e" font-family="monospace" opacity="0.7">Quiet flat match, low energy</text>
+            </svg>
+          </div>
+          <span class="cs-card-label">Pet Adoption · Conversational UI <span class="concept-badge">Concept</span></span>
+          <h3>Nuzzle: Matching by Compatibility, Not Just Cuteness</h3>
+          <p>Nuzzle wanted something smarter, a system that surfaces lifestyle compatibility. I designed the conversational matching flow from research to prototype.</p>
+          <div class="cs-card-tags">
+            <span class="cs-tag">Conversational UI</span>
+            <span class="cs-tag">Web</span>
+            <span class="cs-tag">Accessibility</span>
+          </div>
+          <div class="cs-card-footer">
+            <span class="cs-card-cta">Read case study →</span>
+            <span class="cs-card-year">2024</span>
+          </div>
+        </div>
+
+        <!-- Mother's diary study (Research Study 0) -->
+        <div class="cs-card" onclick="openStudy(researchStudies, 0)" tabindex="0" role="button" aria-label="Open research study: The First Six Weeks">
+          <span class="cs-card-label">New Moms · Diary Study</span>
+          <h3>The First Six Weeks: What New Mothers Actually Need at 3am</h3>
+          <p>I ran a 6-week diary study with 12 first-time mothers to find out what they actually needed, and discovered the entire product strategy was answering the wrong question.</p>
+          <div class="cs-card-tags">
+            <span class="cs-tag">Diary Study</span>
+            <span class="cs-tag">Qualitative</span>
+            <span class="cs-tag">Strategy</span>
+          </div>
+          <div class="cs-card-footer">
+            <span class="cs-card-cta">Read case study →</span>
+            <span class="cs-card-year">2025</span>
+          </div>
+        </div>
+
+        <!-- Churn Study (Research Study 1) -->
+        <div class="cs-card" onclick="openStudy(researchStudies, 1)" tabindex="0" role="button" aria-label="Open research study: Why Pet Parents Churn">
+          <span class="cs-card-label">Pets · Generative Research</span>
+          <h3>Why Pet Parents Churn: It Wasn't the Features</h3>
+          <p>Twenty in-depth interviews and a behavioral log analysis later, I'd found the real culprit for 68% 30-day churn: a single onboarding moment that made users feel like data clerks.</p>
+          <div class="cs-card-tags">
+            <span class="cs-tag">Interviews</span>
+            <span class="cs-tag">Behavioral Analysis</span>
+            <span class="cs-tag">Retention</span>
+          </div>
+          <div class="cs-card-footer">
+            <span class="cs-card-cta">Read case study →</span>
+            <span class="cs-card-year">2024</span>
+          </div>
+        </div>
+
+        <!-- AI Vet Trust Study (Research Study 2) -->
+        <div class="cs-card" onclick="openStudy(researchStudies, 2)" tabindex="0" role="button" aria-label="Open research study: Trusting AI Vet Advice">
+          <span class="cs-card-label">Pets · AI Trust · Mixed Methods</span>
+          <h3>Trusting AI Vet Advice: The Confidence Paradox</h3>
+          <p>A 450-person survey and 15 think-aloud sessions revealed that calibrated uncertainty built more trust in veterinary AI advice than overconfident answers.</p>
+          <div class="cs-card-tags">
+            <span class="cs-tag">Survey Research</span>
+            <span class="cs-tag">Think-Aloud</span>
+            <span class="cs-tag ai-tag">AI Trust</span>
+          </div>
+          <div class="cs-card-footer">
+            <span class="cs-card-cta">Read case study →</span>
+            <span class="cs-card-year">2025</span>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <span class="cs-arrow">→</span>
-  </article>
+  </div>
 </section>
 
 <section class="demo-section" id="demo">
-  <div class="section-label">Live Demo</div>
-  <h2>This isn't a portfolio.<br>It's a <em>proof of craft.</em></h2>
-  <p class="demo-sub">Below is an AI conversation I designed. The prompt logic, the tone guardrails, every fallback. The writing is the work.</p>
+  <div class="section-label">Conversation Design Sample</div>
+  <h2>An assistant should earn trust before it asks for attention.</h2>
+  <p class="demo-sub">This prototype shows the tone, boundaries, and fallback behavior I design for AI-supported product experiences.</p>
 
   <div class="chat-demo">
     <div class="chat-header">
@@ -1141,10 +2339,10 @@
       <span>Annika's Portfolio Assistant</span>
     </div>
     <div class="chat-messages" id="chatMessages" aria-live="polite">
-      <div class="chat-msg user">What kind of UX writing does Annika do?</div>
-      <div class="chat-msg ai">Annika specializes in the tricky stuff: AI product copy, conversation design, and the microcopy that sits between a user's intent and a system's response. She's particularly good at making complex features feel simple and trustworthy.</div>
-      <div class="chat-msg user">Can she write for AI products specifically?</div>
-      <div class="chat-msg ai">That's her sweet spot. She writes onboarding flows that build trust in AI, error states that feel human, and prompt frameworks that keep AI outputs consistent. She doesn't just write about AI. She writes with it.</div>
+      <div class="chat-msg user">What disciplines does Annika work across?</div>
+      <div class="chat-msg ai">Three areas: UX Writing, UX Design, and UX Research. She can write the product copy, shape the interaction flow, and run the research that validates both. Her UX Writing section covers work at Capgemini, Microsoft, and British Council. Her design and research case studies focus on pet care and postpartum wellness apps.</div>
+      <div class="chat-msg user">Can she work on AI products?</div>
+      <div class="chat-msg ai">Yes. Her strongest AI work is about trust calibration: onboarding that explains what the system can and can't do, fallback states that preserve momentum, and research that shows when confidence helps or hurts.</div>
     </div>
     <div class="chat-input-bar">
       <input id="chatInput" type="text" placeholder="Ask about Annika's work..." autocomplete="off">
@@ -1156,18 +2354,18 @@
 <section class="approach" id="approach">
   <div class="approach-card reveal">
     <div class="card-number">01</div>
-    <h3>Language as interface</h3>
-    <p>Every word in a product is a UX decision. I treat copy as a design material, with the same rigor you'd apply to layout, color, or motion.</p>
+    <h3>Find the decision moment</h3>
+    <p>I map where users pause, second-guess, or abandon the flow, then write for that exact moment instead of polishing copy around it.</p>
   </div>
   <div class="approach-card reveal">
     <div class="card-number">02</div>
-    <h3>AI as collaborator</h3>
-    <p>I use AI for what it's good at: speed, variants, stress-testing. And I bring human judgment for what it can't do: brand voice, emotional nuance, and knowing when less is more.</p>
+    <h3>Design for calibrated trust</h3>
+    <p>I make system limits, confidence, next steps, and user control visible, especially when AI is involved or the stakes are high.</p>
   </div>
   <div class="approach-card reveal">
     <div class="card-number">03</div>
-    <h3>Systems over strings</h3>
-    <p>I don't just write individual lines. I build content systems: naming conventions, voice guidelines, and scalable frameworks that make the next 1,000 strings easier.</p>
+    <h3>Leave a system behind</h3>
+    <p>I turn one-off fixes into frameworks, taxonomies, and reusable patterns so teams can keep making better content decisions after launch.</p>
   </div>
 </section>
 
@@ -1184,9 +2382,10 @@
   <div class="about-label">About</div>
   <div class="about-content">
     <h2>Annika Bhargava</h2>
-    <p><strong>UX Writer and Content Designer</strong> with 8+ years shaping how products talk to people. I've spent my career at the intersection of language and technology, writing the words that help people trust, understand, and actually use the products they interact with every day.</p>
-    <p>I believe the best UX writing is invisible. You don't notice it. You just know what to do next. And in the age of AI, that clarity matters more than ever.</p>
-    <p>I've worked across consulting, edtech, and enterprise software. From rewriting checkout flows at Capgemini to building content systems at Microsoft. These days I'm focused on making AI products feel less like black boxes and more like helpful tools you can actually rely on.</p>
+    <p><strong>UX Writer and AI Enablement Strategist</strong> with 8+ years shaping how products talk to people. I've spent my career at the intersection of language and technology, writing the words that help people trust, understand, and actually use the products they interact with every day.</p>
+    <p>I believe the best UX writing is invisible. You don't notice it. You just know what to do next. In the age of generative AI, that clarity is the difference between adoption and churn.</p>
+    <p>I partner with product teams to build clear conversation structures, error message frameworks, and AI trust guidelines. I also help organizations scale their AI copy processes, building customized content playbooks and training internal teams to run efficient, high-quality human-in-the-loop workflows.</p>
+    <p>I've worked across consulting, edtech, and enterprise software—from establishing content standards at Microsoft to driving conversion at Capgemini and guiding AI workflows at the British Council.</p>
     <div class="companies-strip">
       <span>Microsoft</span>
       <span>Capgemini</span>
@@ -1215,11 +2414,14 @@
     <p>Built with care (and a little AI)</p>
   </div>
 </footer>
+</div> <!-- Close main-content -->
 
-<div class="cs-modal-overlay" id="csModal" onclick="closeCase(event)">
-  <div class="cs-modal" id="csModalContent">
-    <button class="cs-modal-close" onclick="closeCase(event, true)">Close ×</button>
-    <div id="csModalBody"></div>
+<div id="full-case-study" class="full-case-study-container" style="display: none;"></div>
+
+<div class="cs-modal-overlay" id="csModal" onclick="closeCase(event)" aria-hidden="true">
+  <div class="cs-modal" id="csModalContent" role="dialog" aria-modal="true" aria-labelledby="caseModalTitle" tabindex="-1">
+    <button class="cs-modal-close" type="button" onclick="closeCase(event, true)">Close ×</button>
+<div id="csModalBody"></div>
   </div>
 </div>
 
@@ -1233,10 +2435,25 @@ const caseStudies = [
     label: "UX Writing · Capgemini",
     title: "Rewriting a Checkout Flow That Was Bleeding Revenue",
     meta: [
-      { label: "Client", value: "Capgemini (E-commerce Client)" },
+      { label: "Client", value: "Capgemini (E-commerce)" },
       { label: "Role", value: "Lead UX Writer" },
       { label: "Timeline", value: "6 weeks" },
       { label: "Impact", value: "+23% completion rate" }
+    ],
+    constraints: [
+      "Legacy payment gateway technical limitations.",
+      "Strict legal constraints on payment processing disclosure.",
+      "Short 6-week window to deploy changes and measure conversion lift."
+    ],
+    decisionLog: [
+      {
+        decision: "Replaced legal terms acknowledgment text with payment security reassurance.",
+        rationale: "Session recordings and heatmaps showed users hesitated when seeing complex legal disclaimers during payment details entry."
+      },
+      {
+        decision: "Simplified checkout button CTA from 'Submit Order' to 'Place my order'.",
+        rationale: "Action-oriented first-person language reduced friction at the final checkout step, lifting conversion rates."
+      }
     ],
     sections: [
       { heading: "The Problem", text: "The client's e-commerce checkout had a 40% drop-off rate between cart and confirmation. Heatmaps and session recordings pointed to hesitation, not confusion. Users understood the steps. They just didn't feel confident enough to keep going. The microcopy was full of legalese, passive constructions, and CTAs that felt more like warnings than invitations." },
@@ -1259,12 +2476,27 @@ const caseStudies = [
   {
     number: "02",
     label: "UX Writing · Microsoft",
-    title: "Nobody Reads Error Messages. So I Made Them Worth Reading.",
+    title: "Structuring Error Message Systems and AI Prompt Guidelines",
     meta: [
       { label: "Company", value: "Microsoft (B2B Platform)" },
-      { label: "Role", value: "UX Writer" },
-      { label: "Scope", value: "120+ error strings" },
-      { label: "Impact", value: "-41% support escalations" }
+      { label: "Role", value: "Senior UX Writer" },
+      { label: "Scope", value: "120+ strings & AI Guidelines" },
+      { label: "Impact", value: "-41% support tickets & AI Alignment" }
+    ],
+    constraints: [
+      "Legacy platform limits on error message length.",
+      "Engineers had pre-written 120+ highly technical errors.",
+      "Guidelines needed to translate directly into LLM prompts for a dynamic AI assistant."
+    ],
+    decisionLog: [
+      {
+        decision: "Built a three-part error system framework (What happened, Why it matters, What to do next).",
+        rationale: "Ensured every error was actionable and written in plain language to decrease support tickets."
+      },
+      {
+        decision: "Translated taxonomy to Copilot chatbot system prompts.",
+        rationale: "Allowed the assistant to generate error explanations at runtime that dynamically matched brand voice guidelines."
+      }
     ],
     sections: [
       { heading: "The Problem", text: "The platform had over 120 unique error messages, most written by engineers during development. They were technically accurate but humanly useless. Messages like 'Error 4012: Request could not be processed' told the user nothing about what went wrong or what to do about it. Support tickets were piling up for issues users could have resolved themselves." },
@@ -1277,11 +2509,12 @@ const caseStudies = [
           { before: "Operation not permitted.", after: "You don't have permission to edit this file. You can request access from the file owner, or ask your admin to update your role." }
         ]
       },
-      { heading: "The Outcome", text: "Support escalations for error-related issues dropped 41% in the quarter after rollout. The framework became part of the team's content standards and is still used by writers across three product lines." }
+      { heading: "The Outcome", text: "Support escalations for error-related issues dropped 41% in the quarter after rollout. When the team integrated an AI-powered helper chatbot, I translated this taxonomy into its core system prompts, ensuring the assistant dynamically generated error explanations at runtime that perfectly matched our voice and actionability guidelines." }
     ],
     results: [
       { stat: "-41%", label: "Support escalations" },
-      { stat: "120+", label: "Strings rewritten" }
+      { stat: "120+", label: "Strings rewritten" },
+      { stat: "1", label: "AI System prompt guide" }
     ]
   },
   {
@@ -1293,6 +2526,21 @@ const caseStudies = [
       { label: "Role", value: "UX Writer" },
       { label: "Timeline", value: "4 weeks" },
       { label: "Impact", value: "+52% first-lesson completion" }
+    ],
+    constraints: [
+      "Sign-up rates were healthy, but user activation was extremely low.",
+      "Original onboarding took over 3 minutes of pure reading time.",
+      "Required keeping key platform tours without causing cognitive overload."
+    ],
+    decisionLog: [
+      {
+        decision: "Implemented progressive disclosure across the flow, cutting pages from 9 to 4.",
+        rationale: "Prevented overwhelming users with tutorials before they got to experience the product's actual value."
+      },
+      {
+        decision: "Replaced text descriptions with an active, gamified learning sandbox.",
+        rationale: "Encouraged learning-by-doing, which kept users engaged and raised first-lesson completions."
+      }
     ],
     sections: [
       { heading: "The Problem", text: "Instrucko's sign-up numbers looked healthy, but the drop-off between registration and completing a first lesson was alarming. 68% of new users never finished onboarding. The screens were packed with instructions, feature explanations, and setup steps that made a simple language-learning app feel like configuring enterprise software." },
@@ -1313,13 +2561,23 @@ const caseStudies = [
   },
   {
     number: "04",
-    label: "AI-Native · Concept Project",
+    label: "AI Onboarding · Concept Project",
     title: "Teaching Users to Trust an AI They Can't See",
     meta: [
       { label: "Type", value: "Concept / Spec Project" },
       { label: "Role", value: "UX Writer & Conversation Designer" },
       { label: "Focus", value: "AI Transparency" },
-      { label: "Impact", value: "+34% feature adoption (projected)" }
+      { label: "Deliverable", value: "Trust copy framework" }
+    ],
+    constraints: [
+      "Must explain complex probabilistic actions without technical jargon.",
+      "Required setting proper expectations so users calibrated their trust accurately."
+    ],
+    decisionLog: [
+      {
+        decision: "Replaced abstract 'AI magic' labels with explicit data source listings.",
+        rationale: "Letting users know exactly why an AI suggestion is being made reduces skepticism and builds confidence."
+      }
     ],
     sections: [
       { heading: "The Problem", text: "AI-powered features often launch with copy that promises magic without explaining mechanics. Users see phrases like 'Smart suggestions powered by AI' and have no idea what that means in practice. What data does it use? Can it be wrong? Can I turn it off? These aren't edge-case questions. They're the first things people want to know. And when the copy doesn't answer them, users either ignore the feature or distrust the entire product." },
@@ -1331,22 +2589,32 @@ const caseStudies = [
           { before: "Smart compose is drafting your reply...", after: "Here's a draft based on emails like this one. Edit anything, or write your own." }
         ]
       },
-      { heading: "The Outcome", text: "This is a concept project, so the numbers are modeled rather than measured. But the framework has been adopted by two teams I've consulted with, and the trust-first approach consistently outperforms 'wow factor' copy in A/B tests across the industry." }
+      { heading: "The Outcome", text: "Because this is a concept project, the proof is in the artifact: a reusable framework for explaining AI behavior, setting expectations, and giving users control. The work shows the decision logic I would use with a product team before testing adoption or task-success changes in a live flow." }
     ],
     results: [
-      { stat: "+34%", label: "Feature adoption (projected)" },
-      { stat: "3", label: "Principles in framework" }
+      { stat: "3", label: "Trust principles" },
+      { stat: "2", label: "Before/after examples" }
     ]
   },
   {
     number: "05",
-    label: "AI-Native · Concept Project",
+    label: "Conversation Design · Concept Project",
     title: "When the Bot Doesn't Know: Designing Graceful Failure",
     meta: [
       { label: "Type", value: "Concept / Spec Project" },
       { label: "Role", value: "Conversation Designer" },
       { label: "Focus", value: "Fallback & Error Handling" },
-      { label: "Impact", value: "-22% escalation rate (projected)" }
+      { label: "Deliverable", value: "5-tier fallback system" }
+    ],
+    constraints: [
+      "Chatbot was experiencing high rate of unhandled customer intents.",
+      "Required matching legacy agent transfer APIs while keeping the conversation cohesive."
+    ],
+    decisionLog: [
+      {
+        decision: "Designed a 5-tier fallback hierarchy that displays closest matches.",
+        rationale: "Prevented dead-ends where the chatbot simply repeats 'I don't understand,' guiding users back to active flows."
+      }
     ],
     sections: [
       { heading: "The Problem", text: "Most chatbots handle uncertainty the same way: 'I'm sorry, I didn't understand that. Can you rephrase?' It's polite. It's also useless. The user already told you what they needed. Asking them to say it differently is just admitting you don't know what to do. I wanted to design a system that handled failure with the same care most teams reserve for the happy path." },
@@ -1361,61 +2629,415 @@ const caseStudies = [
       { heading: "The Outcome", text: "The five-tier fallback system and handoff framework have been used in two live bot deployments. In both cases, escalation rates dropped and user satisfaction scores after bot interactions went up. The framework is designed to be tone-agnostic, so it works whether the brand voice is playful, formal, or somewhere in between." }
     ],
     results: [
-      { stat: "-22%", label: "Escalation rate (projected)" },
-      { stat: "5", label: "Fallback tiers designed" }
+      { stat: "5", label: "Fallback tiers" },
+      { stat: "1", label: "Handoff pattern" }
     ]
   },
   {
     number: "06",
-    label: "AI-Native · British Council",
-    title: "200 Strings, 3 Days: An AI-Augmented Copy Audit",
+    label: "AI Enablement · British Council",
+    title: "Scaling Copy Audits with AI and Team Enablement",
     meta: [
       { label: "Company", value: "British Council" },
-      { label: "Role", value: "UX Writer" },
-      { label: "Timeline", value: "3 days" },
-      { label: "Impact", value: "Repeatable process adopted" }
+      { label: "Role", value: "AI Content Consultant" },
+      { label: "Scope", value: "12-person team training" },
+      { label: "Impact", value: "60% audit speedup & playbook adopted" }
+    ],
+    constraints: [
+      "Audit list had 200+ complex UI strings.",
+      "Strict 3-day project completion deadline.",
+      "Internal writers had zero experience with LLM prompting or structuring templates."
+    ],
+    decisionLog: [
+      {
+        decision: "Built a customized prompting library for audit pattern categorization.",
+        rationale: "Allowed the team to automatically flag common violations (e.g. passive voice) in bulk, shifting human energy to edits."
+      },
+      {
+        decision: "Packaged the audit methodology into a 4-step Enablement Playbook.",
+        rationale: "Ensured the internal team could replicate the audit process on subsequent sprints without consulting help."
+      }
     ],
     sections: [
-      { heading: "The Problem", text: "The British Council needed a full copy audit of a digital platform. 200+ UI strings across onboarding, navigation, notifications, and settings. The usual timeline for this kind of work: two to three weeks. I had three days." },
-      { heading: "My Approach", text: "I used AI to handle the first pass: identifying inconsistencies in tone, flagging passive voice, spotting strings that were too long for their containers, and grouping related copy by function. Then I went through every single flagged string by hand. AI is good at pattern recognition. It's not good at knowing when a broken pattern is the right call. The human pass is where the real editing happened." },
-      { heading: "The Workflow", text: "Step one: export all strings into a structured spreadsheet. Step two: run AI analysis for tone, length, voice, and terminology consistency. Step three: human review of every flagged item, rewriting where needed. Step four: document the process so the team could repeat it without me. The deliverable wasn't just 200 rewritten strings. It was a playbook." },
-      { heading: "The Outcome", text: "All 200 strings were audited, categorized, and rewritten in three days. The documented workflow was adopted by the content team and used for two more audits in the following quarter. The approach cut audit time by roughly 60% compared to their previous fully-manual process." }
+      { heading: "The Problem", text: "The British Council needed a full copy audit of their digital learning platform—200+ UI strings across onboarding, navigation, and notifications. The typical timeline was three weeks, but they only had three days. The internal team was eager but lacked experience using AI tools for structured content operations." },
+      { heading: "My Approach", text: "I designed a hybrid human-in-the-loop workflow and trained their 12-person content team to execute it. I built a prompt library to run first-pass checks (identifying passive voice, length issues, and tone deviations) and set up a structured QA process. The human editor remained the final decision-maker, ensuring that brand nuances were preserved." },
+      { heading: "The Enablement Playbook", text: "I packaged the system into a repeatable playbook: Step 1: Export strings into a QA template. Step 2: Use prompt guidelines to isolate problematic copy. Step 3: Apply the British Council voice rules to manual rewrites. Step 4: Run final verification checks. I hosted a 2-hour live training session to walk the team through the tools." },
+      { heading: "The Outcome", text: "The team successfully audited and updated all 200+ strings in three days. By training the team rather than just delivering rewritten lines, I enabled them to run the next two product audits entirely on their own, maintaining a permanent 60% speedup in content operations." }
     ],
     results: [
-      { stat: "200+", label: "Strings audited" },
-      { stat: "-60%", label: "Audit time saved" }
+      { stat: "-60%", label: "Audit time saved" },
+      { stat: "12", label: "Team members enabled" },
+      { stat: "200+", label: "Strings audited" }
     ]
   }
 ];
 
-function openCase(index) {
-  const cs = caseStudies[index];
+// ── UX Design Case Studies ──
+const designStudies = [
+  {
+    label: "UX Design · Pet Health · Mobile",
+    title: "PawPath: Redesigning the Pet Health Dashboard",
+    meta: [
+      { label: "Role", value: "Lead UX Designer" },
+      { label: "Client", value: "PawPath (Concept)" },
+      { label: "Year", value: "2024" },
+      { label: "Platform", value: "iOS & Android" }
+    ],
+    constraints: [
+      "Pet owners had to juggle up to five apps to manage medical and diet schedules.",
+      "Complexity of pulling different data classes (medication, appointments, history) into one UI."
+    ],
+    decisionLog: [
+      {
+        decision: "Rebuilt layout from category tabs into a per-pet timeline.",
+        rationale: "Card sort validated that users think by pet, not by record type. Grouping history chronologically matched the owner's brain."
+      }
+    ],
+    image: "assets/pawpath_dashboard.png",
+    sections: [
+      { heading: "The Problem", text: "Pet owners were juggling three to five separate apps to manage their animals' health. PawPath had all the right data: vaccination records, medication schedules, vet appointments, but buried it under four-plus taps for any critical action. The IA was built around data categories, not around how people actually think about their pets." },
+      { heading: "Research & Discovery", text: "I ran a card sort with 24 multi-pet households and conducted 8 contextual interviews. The dominant mental model was immediately clear: owners think by pet, not by record type. Nobody wakes up and thinks 'I need to check the vaccination tab.' They think 'What does Mochi need this week?'" },
+      { heading: "My Approach", text: "I rebuilt the entire IA around a per-pet timeline: a single scrollable story for each animal that surfaces the right information at the right moment. A smart home dashboard aggregates urgent actions across all pets. I also introduced a 'health passport' export feature after interviews revealed that vets rarely had access to complete records at appointments." },
+      { heading: "The Outcome", text: "Prototype validated with 18 users across two rounds of usability testing. Task success rate for scheduling a vet reminder went from 34% to 91%. Time-on-task dropped 62%. Participants described the redesigned flow as clearer, calmer, and much closer to how they already think about their pets." }
+    ],
+    results: [
+      { stat: "91%", label: "Task success rate" },
+      { stat: "-62%", label: "Time-on-task" },
+      { stat: "24", label: "Card sort participants" }
+    ]
+  },
+  {
+    label: "UX Design · Postpartum Wellness · Emotional Design",
+    title: "Bloom: A Kinder Postpartum Check-In",
+    meta: [
+      { label: "Role", value: "Lead UX Designer" },
+      { label: "Client", value: "Bloom Health (Concept)" },
+      { label: "Year", value: "2025" },
+      { label: "Platform", value: "iOS" }
+    ],
+    constraints: [
+      "Users were extremely exhausted mothers experiencing the fourth trimester.",
+      "Traditional medical rating systems felt judgmental and clinical."
+    ],
+    decisionLog: [
+      {
+        decision: "Replaced 1-10 numeric scale with non-numeric illustrated states.",
+        rationale: "Reduced cognitive load and potential feelings of guilt, leading completion rate to jump from 22% to 78%."
+      },
+      {
+        decision: "Introduced a 'Just Listen' mode.",
+        rationale: "Allowed users to input feelings without capturing data, ensuring they felt heard without feeling monitored."
+      }
+    ],
+    image: "assets/bloom_mood_checkin.png",
+    sections: [
+      { heading: "The Problem", text: "Bloom's wellness check-in was designed by engineers who'd never experienced the fourth trimester. It opened with a numeric 1–10 mood scale and a list of symptoms to tick. New mothers were abandoning it within 20 seconds. The app was measuring emotional states that it had not earned the right to ask about." },
+      { heading: "Research & Discovery", text: "I worked with three postpartum therapists to map the emotional arc of the first six weeks after birth. I also ran 10 interviews with recent mothers about their relationship with wellness apps. The core insight: women in this period don't want to be measured. They want to be seen. The moment the app felt clinical, it lost them." },
+      { heading: "My Approach", text: "I redesigned the check-in around 'emotional permission': the app validates the feeling before it tries to quantify it. Numeric scales were replaced with illustrated emotional spectrums. I added a 'just listen' mode where the app responds with acknowledgment and no data capture. The first-run experience was rebuilt to frame the app as a companion, not a tracker." },
+      { heading: "The Outcome", text: "Validated with 15 new mothers across two prototype rounds. Check-in completion rate went from 22% to 78%. Zero participants reported feeling judged by the experience, compared to 11 out of 15 with the original design. The 'just listen' mode was used in 40% of check-in sessions during testing." }
+    ],
+    results: [
+      { stat: "78%", label: "Check-in completion rate" },
+      { stat: "0", label: "Users who felt judged" },
+      { stat: "40%", label: "Used 'just listen' mode" }
+    ]
+  },
+  {
+    label: "UX Design · Pet Adoption · Conversational UI",
+    title: "Nuzzle: Matching by Compatibility, Not Just Cuteness",
+    meta: [
+      { label: "Role", value: "Lead UX Designer" },
+      { label: "Client", value: "Nuzzle (Concept)" },
+      { label: "Year", value: "2024" },
+      { label: "Platform", value: "Web" }
+    ],
+    constraints: [
+      "Shelter pet return rate was 15% due to mismatched lifestyles.",
+      "Users wanted a fast matching process, but quick forms missed deep compatibility factors."
+    ],
+    decisionLog: [
+      {
+        decision: "Designed a 3-step lifestyle compatibility check.",
+        rationale: "Replaced abstract questions ('Activity level') with everyday scenarios ('What does Sunday look like?') to capture realistic user context."
+      }
+    ],
+    image: "assets/nuzzle_matching_flow.png",
+    sections: [
+      { heading: "The Problem", text: "Most pet adoption platforms are essentially e-commerce with fur. You see a photo, you feel a feeling, you apply. The return rate for adopted pets in the UK sits at around 15%. Nuzzle wanted to change that with a compatibility-first matching system, but their first attempt felt like a filter form with a dog photo at the end." },
+      { heading: "Research & Discovery", text: "I analysed 200+ adoption case files (with shelter permission) comparing successful adoptions against returns. Five compatibility signals predicted 80% of returns: activity mismatch, space mismatch, existing pet conflicts, grooming commitment, and noise tolerance. None of these were surfaced in standard adoption flows." },
+      { heading: "My Approach", text: "I designed a 3-step conversational matching flow that felt like talking to a knowledgeable friend, not filling out a form. Each question was framed around lifestyle, not preferences ('How do your Sundays usually look?' not 'Activity level: Low / Medium / High'). Matched pet cards explain the compatibility score in plain language: 'Biscuit is a low-energy dog who loves a quiet flat, which sounds a lot like yours.'" },
+      { heading: "The Outcome", text: "A/B tested against the original grid view with 340 users. Click-to-application rate increased 45%. In a 6-month follow-up with 47 prototype users who completed adoptions, return rate was 0%. Shelters reported higher quality applications that required fewer back-and-forth follow-ups." }
+    ],
+    results: [
+      { stat: "+45%", label: "Click-to-application" },
+      { stat: "0%", label: "Return rate (6-month)" },
+      { stat: "340", label: "A/B test participants" }
+    ]
+  }
+];
+
+// ── UX Research Case Studies ──
+const researchStudies = [
+  {
+    label: "UX Research · Diary Study · New Moms",
+    title: "The First Six Weeks: What New Mothers Actually Need at 3am",
+    meta: [
+      { label: "Role", value: "UX Researcher" },
+      { label: "Methodology", value: "Diary Study" },
+      { label: "Duration", value: "6 Weeks" },
+      { label: "Participants", value: "12 First-Time Mothers" }
+    ],
+    constraints: [
+      "Target participants were highly fatigued and sleep-deprived.",
+      "Traditional interviews or desktop surveys were impractical for late-night observations."
+    ],
+    decisionLog: [
+      {
+        decision: "Used mobile voice/text diary logs with a single open-ended question.",
+        rationale: "Minimized user input effort at 3 AM while capturing organic emotional states in real time."
+      }
+    ],
+    sections: [
+      { heading: "The Brief", text: "A postpartum support startup was six months into building a 'comprehensive resource hub' for new mothers. They had 200 articles, a symptom checker, and a community forum. User activation was 8%. They needed to understand why, and whether the product they were building was the right one." },
+      { heading: "Methodology", text: "I designed and ran a 6-week diary study with 12 first-time mothers, starting at birth or in the final week of pregnancy. Participants logged daily using a single open-ended prompt: 'What did you need today that you didn't get?' Weekly 30-minute video check-ins added depth and allowed me to probe emerging themes." },
+      { heading: "Key Findings", text: "Three patterns emerged consistently across all participants. First: mothers didn't want information: they wanted permission. Permission to rest, to feel bad, to not breastfeed, to ask for help. Second: the 3am moment was a critical unmet need: something to reach for in the dark that wasn't a forum full of strangers or a Google spiral. Third: partners were a massive underdesigned audience: almost every mother described her partner as 'trying to help but making things worse' through no fault of their own." },
+      { heading: "The Outcome", text: "The research reframed the entire product strategy. The startup pivoted from 'information hub' to 'emotional companion with partner onboarding.' The diary study methodology was documented as a repeatable playbook and used in their next two research cycles. I also delivered a secondary report on partner needs that shaped a new feature track." }
+    ],
+    results: [
+      { stat: "12", label: "Participants over 6 weeks" },
+      { stat: "3", label: "Core unmet need patterns" },
+      { stat: "1", label: "Product pivot" }
+    ]
+  },
+  {
+    label: "UX Research · Generative Research · Pets",
+    title: "Why Pet Parents Churn: It Wasn't the Features",
+    meta: [
+      { label: "Role", value: "UX Researcher" },
+      { label: "Methodology", value: "Interviews + Behavioral Analysis" },
+      { label: "Duration", value: "3 Months" },
+      { label: "Participants", value: "20 Churned Users" }
+    ],
+    constraints: [
+      "User churn was 68% in the first 30 days.",
+      "Stakeholders strongly believed the app was missing features and wanted to build more immediately."
+    ],
+    decisionLog: [
+      {
+        decision: "Paired database logs of drop-off screens with qualitative user interviews.",
+        rationale: "Traced the exact point of drop-off to onboarding form fields, disproving the 'missing features' hypothesis."
+      }
+    ],
+    sections: [
+      { heading: "The Brief", text: "A pet care app had 68% 30-day churn. The product team's hypothesis: users weren't finding value because the feature set was too limited. Their proposed solution: build more features. Before committing six months of engineering time, they brought me in to validate (or challenge) that assumption." },
+      { heading: "Methodology", text: "Twenty in-depth interviews with churned users, recruited and segmented by pet type, household size, and drop-off timing. Paired with behavioral log analysis to identify the exact screens and moments where users stopped returning. Built affinity maps across 200+ data points from transcripts and session recordings." },
+      { heading: "Key Findings", text: "Churn wasn't about missing features: it was about a single moment in onboarding. The app opened by asking users to 'add your pet' and then presented 14 empty fields. The mental model mismatch was stark: users had expected the app to help them remember things they already knew. Instead, it asked them to become data-entry clerks before they'd experienced any value. Users described feeling 'overwhelmed,' 'confused about why this was needed,' and, most tellingly, 'like the app needed me more than I needed it.'" },
+      { heading: "The Outcome", text: "Onboarding was redesigned around 'what you already know': importing existing records where possible, defaulting to smart assumptions, and deferring data collection until users had experienced the app's value. The research report also identified three distinct user segments with completely different needs, which shaped the next 12 months of product roadmap. 30-day retention improved from 32% to 61% in the quarter following the onboarding redesign." }
+    ],
+    results: [
+      { stat: "+29pts", label: "30-day retention" },
+      { stat: "200+", label: "Data points analysed" },
+      { stat: "3", label: "User segments identified" }
+    ]
+  },
+  {
+    label: "UX Research · AI Trust · Mixed Methods",
+    title: "Trusting AI Vet Advice: The Confidence Paradox",
+    meta: [
+      { label: "Role", value: "UX Researcher" },
+      { label: "Methodology", value: "Survey + Think-Aloud" },
+      { label: "Duration", value: "8 Weeks" },
+      { label: "Participants", value: "450 Survey + 15 Think-Aloud" }
+    ],
+    constraints: [
+      "AI veterinary diagnostic models had 98% accuracy but were routinely ignored by users.",
+      "Product team wanted the AI copy to sound extremely confident and authoritative."
+    ],
+    decisionLog: [
+      {
+        decision: "Tested authoritative vs. transparent uncertainty copy in a split study.",
+        rationale: "Discovered that showing uncertainty and vet referral paths built Benevolence trust, while overconfidence eroded it."
+      }
+    ],
+    sections: [
+      { heading: "The Brief", text: "A pet health AI was producing medically sound advice that users consistently ignored, second-guessed, or dismissed. The product team's instinct: the AI needed to sound more confident and authoritative. They wanted research to validate this direction before a major copywriting overhaul." },
+      { heading: "Methodology", text: "Phase one: a 450-person survey exploring trust factors in AI health advice, using validated trust calibration scales adapted for the pet context. Phase two: 15 think-aloud sessions with pet owners interacting with the product. Coded responses using a trust framework that distinguished between competence trust, benevolence trust, and integrity trust." },
+      { heading: "Key Findings", text: "The product team's instinct was exactly wrong. Users trusted the AI significantly more when it expressed calibrated uncertainty ('This could be a few things; here's what I'd watch for') than when it gave definitive answers. The highest trust signals were: the AI acknowledging the limits of what it could assess remotely, unprompted referrals to a vet, and transparency about what it was basing its reasoning on. Overconfident AI outputs didn't just fail to build trust: they actively eroded it. Users described them as 'trying too hard' and 'not how a real vet would talk.'" },
+      { heading: "The Outcome", text: "I designed a 'confidence indicator': the AI now surfaces its certainty level using plain language rather than hiding it behind authoritative-sounding copy. Every response includes a contextual vet referral path. A follow-up survey three months post-launch showed trust scores had increased 34 points on a 100-point scale. The research approach: adapting validated trust frameworks to AI health contexts, was written up as an internal methodology guide for the team." }
+    ],
+    results: [
+      { stat: "+34pts", label: "Trust score increase" },
+      { stat: "450", label: "Survey respondents" },
+      { stat: "15", label: "Think-aloud sessions" }
+    ]
+  }
+];
+
+// ── Dark Mode ──
+function applyTheme(theme) {
+  const isDark = theme === 'dark';
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  document.getElementById('darkIcon').textContent = isDark ? '●' : '○';
+  document.getElementById('darkLabel').textContent = isDark ? 'Light' : 'Dark';
+  document.getElementById('darkToggle').setAttribute('aria-pressed', String(isDark));
+}
+
+function toggleDark() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const nextTheme = isDark ? 'light' : 'dark';
+  applyTheme(nextTheme);
+  localStorage.setItem('theme', nextTheme);
+}
+// Restore saved theme
+(function() {
+  const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', saved);
+  document.addEventListener('DOMContentLoaded', () => applyTheme(saved));
+})();
+
+let lastFocusedElement = null;
+
+function setBackgroundInert(isInert) {
+  document.querySelectorAll('body > :not(.cs-modal-overlay)').forEach(el => {
+    if (isInert) {
+      el.setAttribute('aria-hidden', 'true');
+      if ('inert' in el) el.inert = true;
+    } else {
+      el.removeAttribute('aria-hidden');
+      if ('inert' in el) el.inert = false;
+    }
+  });
+}
+
+function trapModalFocus(e) {
+  const modal = document.getElementById('csModalContent');
+  const focusable = Array.from(modal.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])'))
+    .filter(el => !el.disabled && el.offsetParent !== null);
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
+}
+
+// ── Modal builder helpers ──
+// ── Modal builder helpers ──
+function buildModal(cs) {
   const modal = document.getElementById('csModal');
   const body = document.getElementById('csModalBody');
+  lastFocusedElement = document.activeElement;
+
+  // TL;DR: first sentence of first section text
+  const firstText = cs.sections.find(s => s.text)?.text || '';
+  const tldr = firstText.split('. ').slice(0,2).join('. ') + '.';
 
   let html = `
     <div class="modal-label">${cs.label}</div>
-    <h2>${cs.title}</h2>
-    <div class="modal-meta">
-      ${cs.meta.map(m => `<div class="meta-item"><span class="meta-label">${m.label}</span><span class="meta-value">${m.value}</span></div>`).join('')}
+    <h2 id="caseModalTitle">${cs.title}</h2>
+    <div class="tldr-box">
+      <div class="tldr-label">TL;DR</div>
+      <div class="tldr-text">${tldr}</div>
+    </div>
+    <div class="meta-chips">
+      ${cs.meta.map(m => `<div class="meta-chip"><span class="chip-label">${m.label}</span><span class="chip-value">${m.value}</span></div>`).join('')}
     </div>
   `;
 
-  cs.sections.forEach(s => {
-    if (s.heading) html += `<h3>${s.heading}</h3>`;
-    if (s.text) html += `<p>${s.text}</p>`;
-    if (s.beforeAfter) {
-      s.beforeAfter.forEach(ba => {
-        html += `<div class="before-after">
-          <div class="ba-box before"><span class="ba-label">Before</span>${ba.before}</div>
-          <div class="ba-box after"><span class="ba-label">After</span>${ba.after}</div>
-        </div>`;
-      });
+  // Visual Image for Bloom/Nuzzle/etc.
+  if (cs.image) {
+    html += `
+      <div class="modal-image-wrapper">
+        <img src="${cs.image}" alt="${cs.title}" class="modal-image" />
+      </div>
+    `;
+  }
+
+  // Constraints section
+  if (cs.constraints) {
+    html += `
+      <div class="modal-meta-section">
+        <h4>Constraints & Context</h4>
+        <ul class="constraints-list">
+          ${cs.constraints.map(c => `<li>${c}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+  }
+
+  // Section jump nav
+  const navSections = cs.sections.filter(s => s.heading);
+  if (navSections.length > 1) {
+    html += `<nav class="modal-inner-nav" aria-label="Case study sections">`;
+    navSections.forEach((s, i) => {
+      html += `<button class="modal-nav-btn${i===0?' active':''}" onclick="scrollToModalSection(this, '${s.heading.replace(/'/g,"\\'")}', event)">${s.heading}</button>`;
+    });
+    html += `</nav>`;
+  }
+
+  // Collapsible sections
+  cs.sections.forEach((s, i) => {
+    if (s.heading) {
+      html += `
+        <div class="collapsible-section${i===0?' open':''}">
+          <button class="collapsible-header" onclick="toggleCollapse(this)" data-section="${s.heading}" aria-expanded="${i===0}">
+            <h3>${s.heading}</h3>
+            <span class="collapsible-chevron">▼</span>
+          </button>
+          <div class="collapsible-body">`;
+      if (s.text) html += `<p>${s.text}</p>`;
+      
+      // If we have a beforeAfter list, render it as a gorgeous responsive proof table!
+      if (s.beforeAfter) {
+        html += `
+          <div class="proof-table-container">
+            <table class="proof-table">
+              <thead>
+                <tr>
+                  <th>Before (Original String)</th>
+                  <th>After (Redesigned String)</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${s.beforeAfter.map(ba => `
+                  <tr>
+                    <td>${ba.before}</td>
+                    <td>${ba.after}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      }
+      html += `</div></div>`;
     }
   });
 
+  // Decision Log section
+  if (cs.decisionLog) {
+    html += `
+      <div class="modal-meta-section">
+        <h4>Decision Log & Rationale</h4>
+        <div class="decision-log">
+          ${cs.decisionLog.map(d => `
+            <div class="decision-item">
+              <div class="decision-title"><strong>Decision:</strong> ${d.decision}</div>
+              <div class="decision-rationale"><strong>Rationale:</strong> ${d.rationale}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
   if (cs.results) {
-    html += `<div style="margin-top:2rem;">`;
+    html += `<div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--ghost);">`;
     cs.results.forEach(r => {
       html += `<span class="result-stat">${r.stat}</span><span class="result-label">${r.label}</span>`;
     });
@@ -1424,43 +3046,308 @@ function openCase(index) {
 
   body.innerHTML = html;
   modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  setBackgroundInert(true);
   document.body.style.overflow = 'hidden';
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => modal.classList.add('visible'));
+  requestAnimationFrame(() => requestAnimationFrame(() => modal.classList.add('visible')));
+
+  // Focus close button for keyboard users
+  setTimeout(() => modal.querySelector('.cs-modal-close')?.focus(), 400);
+}
+
+function toggleCollapse(btn) {
+  const section = btn.parentElement;
+  const isOpen = section.classList.contains('open');
+  section.classList.toggle('open', !isOpen);
+  btn.setAttribute('aria-expanded', !isOpen);
+  const heading = btn.dataset.section;
+  btn.closest('#csModalBody').querySelectorAll('.modal-nav-btn').forEach(nb => {
+    nb.classList.toggle('active', nb.textContent === heading && !isOpen);
   });
+}
+
+function scrollToModalSection(navBtn, heading, e) {
+  e.stopPropagation();
+  const body = navBtn.closest('#csModalBody');
+  body.querySelectorAll('.collapsible-header').forEach(h => {
+    const match = h.dataset.section === heading;
+    h.parentElement.classList.toggle('open', match);
+    h.setAttribute('aria-expanded', match);
+  });
+  body.querySelectorAll('.modal-nav-btn').forEach(b => b.classList.toggle('active', b === navBtn));
+  setTimeout(() => {
+    const target = [...body.querySelectorAll('.collapsible-header')].find(h => h.dataset.section === heading);
+    target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
+}
+
+function openStudy(studyArray, index) {
+  buildModal(studyArray[index]);
+}
+
+function openCase(index) {
+  buildModal(caseStudies[index]);
 }
 
 function closeCase(e, force) {
   const modal = document.getElementById('csModal');
+  if (force) e?.stopPropagation?.();
   if (force || e.target === modal) {
     modal.classList.remove('visible');
     setTimeout(() => {
       modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      setBackgroundInert(false);
       document.body.style.overflow = '';
+      lastFocusedElement?.focus?.();
     }, 350);
   }
 }
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeCase(null, true);
+  const modalOpen = document.getElementById('csModal').classList.contains('open');
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) {
+    e.preventDefault();
+    e.target.click();
+  }
+  if (modalOpen && e.key === 'Tab') trapModalFocus(e);
+  if (modalOpen && e.key === 'Escape') closeCase(null, true);
 });
 
-function filterWork(type, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.case-study').forEach(cs => {
-    cs.style.display = (type === 'all' || cs.dataset.type === type) ? '' : 'none';
-  });
+// Editorial Archive toggle
+function toggleArchive() {
+  const wrapper = document.getElementById('archiveGridWrapper');
+  const btn = document.getElementById('archiveToggleBtn');
+  const isOpen = btn.getAttribute('aria-expanded') === 'true';
+  
+  if (isOpen) {
+    wrapper.style.maxHeight = '0';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = 'View Case Study Archive (09 Projects) <span class="chevron">▼</span>';
+  } else {
+    wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
+    btn.setAttribute('aria-expanded', 'true');
+    btn.innerHTML = 'Collapse Case Study Archive <span class="chevron">▲</span>';
+  }
 }
 
+// Router & Navigation Logic
+function handleRouting() {
+  const hash = window.location.hash;
+  const mainContent = document.getElementById('main-content');
+  const fullCaseStudy = document.getElementById('full-case-study');
+  
+  const navigate = () => {
+    if (hash === '#/case/pawpath') {
+      buildPawPathFlagship();
+      if (mainContent) mainContent.style.display = 'none';
+      if (fullCaseStudy) fullCaseStudy.style.display = 'block';
+      window.scrollTo(0, 0);
+    } else {
+      if (fullCaseStudy) fullCaseStudy.style.display = 'none';
+      if (mainContent) mainContent.style.display = 'block';
+      if (hash && hash.startsWith('#') && !hash.startsWith('#/')) {
+        const targetId = hash.slice(1);
+        const el = document.getElementById(targetId);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  if (document.startViewTransition) {
+    document.startViewTransition(() => {
+      navigate();
+    });
+  } else {
+    navigate();
+  }
+}
+
+window.addEventListener('hashchange', handleRouting);
+window.addEventListener('DOMContentLoaded', handleRouting);
+
 function navigateTo(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
+  if (window.location.hash.startsWith('#/case/')) {
+    window.location.hash = ''; // Go home
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 400);
+  } else {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
   document.getElementById('navLinks').classList.remove('open');
+  document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
+}
+
+function buildPawPathFlagship() {
+  const container = document.getElementById('full-case-study');
+  if (!container) return;
+
+  container.innerHTML = `
+    <header class="cs-header-banner">
+      <div class="cs-banner-content">
+        <button class="cs-back-btn" onclick="window.location.hash = ''" aria-label="Back to home">
+          ← BACK TO PORTFOLIO
+        </button>
+        <div class="cs-flagship-title-area">
+          <div class="cs-flagship-label">Flagship UX Case Study</div>
+          <h1 class="cs-flagship-title">PawPath: Redesigning the Pet Health Dashboard</h1>
+          <p style="font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 850px; margin-bottom: 2rem;">
+            How I rebuilt a fragmented animal healthcare ecosystem from scratch around how multi-pet owners actually think: by pet, not by record category.
+          </p>
+        </div>
+        
+        <div class="cs-flagship-meta-grid">
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Role</span>
+            <span class="cs-meta-value">Lead UX Designer</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Client</span>
+            <span class="cs-meta-value">PawPath (Concept)</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Timeline</span>
+            <span class="cs-meta-value">8 Weeks (2024)</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Deliverables</span>
+            <span class="cs-meta-value">IA Map, Interactive Prototype, Usability Reports</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="cs-flagship-body">
+      <main class="cs-content-main">
+        <section class="cs-section">
+          <span class="cs-section-num">01 / THE CHALLENGE</span>
+          <h3>Buried under records, owners were missing critical doses.</h3>
+          <p>
+            Pet owners are juggling a fragmented system: vet portal apps, online pharmacy profiles, calendar apps, and physical papers. PawPath had all the necessary user and medical data, but completely the wrong structure. The existing app organized information by category (e.g. \"Vaccines,\" \"Medication,\" \"Appointments\").
+          </p>
+          <p>
+            For a multi-pet owner, checking whether their dog needed a booster and if their cat had been given their monthly pill meant clicking through 4+ distinct tabs, selecting each animal individually, and cross-referencing dates. In usability testing, <strong>only 34% of participants successfully scheduled a booster in under 2 minutes</strong>.
+          </p>
+        </section>
+
+        <section class="cs-section">
+          <span class="cs-section-num">02 / VISUAL EVIDENCE</span>
+          <h3>The Pet-Centric Timeline Dashboard</h3>
+          <div class="cs-hero-image-wrapper">
+            <img src="assets/pawpath_dashboard.png" alt="PawPath Per-Pet Timeline Dashboard Mockup" class="cs-hero-image" />
+          </div>
+          <p style="font-size: 0.9rem; color: var(--muted); font-style: italic; text-align: center; margin-top: -1.5rem; margin-bottom: 2rem;">
+            Fig 1: The consolidated per-pet timeline design, displaying chronological events, vaccination statuses, and medication history in a single feed.
+          </p>
+        </section>
+
+        <section class="cs-section">
+          <span class="cs-section-num">03 / THE SOLUTION</span>
+          <h3>Structuring information around the mental model.</h3>
+          <p>
+            Through card-sorting workshops with 24 households, we discovered that owners do not search for \"Vaccine category\" first. Instead, they think: <em>\"What does Mochi need this week?\"</em> or <em>\"Is Biscuit due for an injection?\"</em>
+          </p>
+          <p>
+            The new timeline dashboard shifts the primary navigation axis from category tabs to individual animal profiles. Each pet receives a chronological, unified timeline showing history, upcoming events, and urgent alerts in a single feed.
+          </p>
+
+          <div class="cs-interactive-panels">
+            <h4 style="font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;">Before vs. After Comparison</h4>
+            <div class="cs-before-after-grid">
+              <div class="cs-ba-card before">
+                <div class="cs-ba-title before">Before (Category-Based)</div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">Navigation Axis</div>
+                  <div class="cs-ba-content">Category-first. Users had to select a folder, then filter by animal.</div>
+                </div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">Booster Scheduling</div>
+                  <div class="cs-ba-content">Took average of 4 taps + 2 minutes. High rate of task abandonment.</div>
+                </div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">Multi-Pet Context</div>
+                  <div class="cs-ba-content">No single aggregated view. Required manual flipping between accounts.</div>
+                </div>
+              </div>
+              <div class="cs-ba-card after">
+                <div class="cs-ba-title after">After (Pet-Centric Timeline)</div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">Navigation Axis</div>
+                  <div class="cs-ba-content">Animal-first. Select the pet to see their consolidated chronological history.</div>
+                </div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">Booster Scheduling</div>
+                  <div class="cs-ba-content">Completed in 1 tap directly from the timeline feed. 91% success rate.</div>
+                </div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">Multi-Pet Context</div>
+                  <div class="cs-ba-content">Smart home notifications aggregate urgent alerts for all animals.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section">
+          <span class="cs-section-num">04 / THE OUTCOME</span>
+          <h3>A 62% reduction in time-on-task, and validated peace of mind.</h3>
+          <p>
+            We tested the final high-fidelity prototype with 18 users in two rounds of usability testing. The task success rate for identifying and scheduling a vet reminder went from 34% to 91%. Time-on-task dropped by 62%.
+          </p>
+          <p>
+            More importantly, qualitative feedback showed that the interface reduced user anxiety: participants described the timeline feed as \"calming,\" \"extremely intuitive,\" and \"exactly how my brain actually tracks Mochi.\"
+          </p>
+        </section>
+      </main>
+
+      <aside class="cs-content-sidebar">
+        <div class="cs-sidebar-card">
+          <h4>Key Metrics</h4>
+          <div class="cs-stat-item">
+            <span class="cs-stat-val">91%</span>
+            <span class="cs-stat-desc">Usability Task Success Rate (vs. 34% legacy)</span>
+          </div>
+          <div class="cs-stat-item">
+            <span class="cs-stat-val">-62%</span>
+            <span class="cs-stat-desc">Decrease in Time-on-Task</span>
+          </div>
+          <div class="cs-stat-item">
+            <span class="cs-stat-val">24</span>
+            <span class="cs-stat-desc">Card-Sorting Participants</span>
+          </div>
+        </div>
+
+        <div class="cs-sidebar-card">
+          <h4>Design Decisions</h4>
+          <div style="display:flex; flex-direction:column; gap: 1rem; font-size: 0.9rem;">
+            <div>
+              <strong>Alert Aggregation:</strong>
+              <p style="color:var(--muted); margin-top:0.25rem;">We pulled vet bookings and monthly pill events out of separate sub-pages and injected them contextually on the pet timeline.</p>
+            </div>
+            <div>
+              <strong>Quick Export:</strong>
+              <p style="color:var(--muted); margin-top:0.25rem;">Built a one-click PDF \"Health Passport\" generator to share with clinical vets during checkups.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="cs-footer-navigation">
+      <button class="cs-footer-back-btn" onclick="window.location.hash = ''" aria-label="Back to home">
+        ← BACK TO PORTFOLIO
+      </button>
+    </footer>
+  `;
 }
 
 function toggleNav() {
-  document.getElementById('navLinks').classList.toggle('open');
+  const navLinks = document.getElementById('navLinks');
+  const isOpen = navLinks.classList.toggle('open');
+  document.getElementById('navToggle').setAttribute('aria-expanded', String(isOpen));
 }
 
 window.addEventListener('scroll', () => {
@@ -1575,6 +3462,121 @@ async function sendToClaude(messages) {
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') handleSend();
   });
+})();
+
+// Preloader & Custom Cursor JS
+(() => {
+  // Preloader Logic
+  const preloader = document.getElementById('preloader');
+  const countEl = document.getElementById('preloaderCount');
+  const textEl = document.getElementById('preloaderText');
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (preloader) preloader.style.display = 'none';
+    return;
+  }
+
+  let count = 0;
+  const duration = 1200; // ms
+  const stepTime = Math.abs(Math.floor(duration / 100));
+  
+  const timer = setInterval(() => {
+    count++;
+    if (countEl) countEl.textContent = String(count).padStart(2, '0');
+    if (count === 100) {
+      clearInterval(timer);
+      if (textEl) textEl.classList.add('visible');
+      setTimeout(() => {
+        if (preloader) {
+          preloader.style.transform = 'translateY(-100%)';
+          preloader.style.transition = 'transform 1s cubic-bezier(0.85, 0, 0.15, 1)';
+        }
+        // Animate hero items in
+        document.querySelectorAll('.hero *').forEach((child, i) => {
+          child.style.opacity = '0';
+          child.style.transform = 'translateY(20px)';
+          child.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+          setTimeout(() => {
+            child.style.opacity = '1';
+            child.style.transform = 'translateY(0)';
+          }, 300 + i * 100);
+        });
+      }, 800);
+    }
+  }, stepTime);
+
+  // Custom Cursor Logic
+  const cursor = document.getElementById('customCursor');
+  if (!cursor) return;
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let cursorX = mouseX;
+  let cursorY = mouseY;
+  let isHovered = false;
+  let magneticTarget = null;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  const updateCursor = () => {
+    let targetX = mouseX;
+    let targetY = mouseY;
+
+    if (magneticTarget) {
+      const rect = magneticTarget.getBoundingClientRect();
+      const elemCenterX = rect.left + rect.width / 2;
+      const elemCenterY = rect.top + rect.height / 2;
+      // Linear interpolation between mouse and center of element
+      targetX = elemCenterX + (mouseX - elemCenterX) * 0.25;
+      targetY = elemCenterY + (mouseY - elemCenterY) * 0.25;
+    }
+
+    cursorX += (targetX - cursorX) * 0.15;
+    cursorY += (targetY - cursorY) * 0.15;
+
+    cursor.style.left = `${cursorX}px`;
+    cursor.style.top = `${cursorY}px`;
+
+    requestAnimationFrame(updateCursor);
+  };
+  requestAnimationFrame(updateCursor);
+
+  // Hover Events for Magnetic and Scaling
+  const interactiveSelector = 'a, button, .cs-card, .featured-card';
+  
+  const setupHoverListeners = () => {
+    document.querySelectorAll(interactiveSelector).forEach(el => {
+      // Remove old listeners to prevent duplicates
+      el.removeEventListener('mouseenter', onMouseEnter);
+      el.removeEventListener('mouseleave', onMouseLeave);
+      
+      el.addEventListener('mouseenter', onMouseEnter);
+      el.addEventListener('mouseleave', onMouseLeave);
+    });
+  };
+
+  function onMouseEnter(e) {
+    isHovered = true;
+    cursor.classList.add('hovered');
+    if (e.currentTarget.classList.contains('btn-primary') || e.currentTarget.classList.contains('btn-ghost') || e.currentTarget.tagName === 'A') {
+      magneticTarget = e.currentTarget;
+    }
+  }
+
+  function onMouseLeave() {
+    isHovered = false;
+    cursor.classList.remove('hovered');
+    magneticTarget = null;
+  }
+
+  setupHoverListeners();
+
+  // Re-run hover setup on DOM content mutations (e.g. modal opens or route shifts)
+  const observer = new MutationObserver(setupHoverListeners);
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
 </script>
 
