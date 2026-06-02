@@ -247,6 +247,89 @@
 
   .manifesto-content p strong { color: var(--paper); font-weight: 400; }
 
+  /* Spotlight Project Styles */
+  .spotlight-section {
+    padding: 8rem 3rem;
+    background: var(--paper-warm);
+    border-top: 1px solid var(--ghost);
+    border-bottom: 1px solid var(--ghost);
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .spotlight-visual {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--paper);
+    border: 1px solid var(--ghost);
+    border-radius: 8px;
+    padding: 3.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    position: relative;
+    overflow: hidden;
+  }
+  .spotlight-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: var(--paper);
+    padding: 0.35rem 0.7rem;
+    font-weight: 600;
+  }
+  .spotlight-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .spotlight-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .spotlight-info h3 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    line-height: 1.15;
+    font-weight: 400;
+    color: var(--ink);
+  }
+  .spotlight-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .spotlight-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .spotlight-tag {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--ghost);
+    color: var(--muted);
+  }
+  .spotlight-ctas {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    align-items: center;
+  }
+
   .featured-work {
     padding: 7rem 3rem;
     border-top: 1px solid var(--ghost);
@@ -1213,6 +1296,8 @@
 [data-theme="dark"] .tldr-box { background: #1c1916; border-color: var(--ghost); }
 [data-theme="dark"] .modal-inner-nav { background: var(--paper-warm); border-right-color: var(--ghost); }
 [data-theme="dark"] .collapsible-body { background: #1c1916; }
+[data-theme="dark"] .spotlight-section { background: var(--paper-warm); }
+[data-theme="dark"] .spotlight-visual { background: var(--paper); border-color: var(--ghost); box-shadow: none; }
 
 /* Dark mode toggle button */
 .dark-toggle {
@@ -1516,6 +1601,11 @@ section { transition: opacity 0.1s; }
   }
   .team-grid-section {
     padding: 4rem 1.5rem;
+  }
+  .spotlight-section {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 5rem 1.5rem;
   }
 }
 
@@ -1975,6 +2065,71 @@ section { transition: opacity 0.1s; }
     <p><strong>Good product language is evidence of good product thinking.</strong> It shows the user what changed, what matters, and what they can safely do next.</p>
     <p>In AI products, that means designing for <strong>calibrated trust</strong>: clear limits, visible reasoning, graceful failure, and user control instead of vague promises of magic.</p>
     <p>I help companies navigate the transition to AI, showing teams how to combine generative tools with strict content guidelines and human-in-the-loop editing to preserve user trust.</p>
+  </div>
+</section>
+
+<section class="spotlight-section" id="spotlight-project">
+  <div class="spotlight-visual reveal">
+    <span class="spotlight-badge">Spotlight</span>
+    <svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg" class="diagram-svg">
+      <!-- Left side: Vibe Selector -->
+      <rect x="10" y="15" width="90" height="70" rx="6" fill="none" stroke="#c45d3e" stroke-width="1.5" opacity="0.4"/>
+      <!-- Active Vibe Card -->
+      <rect x="18" y="23" width="74" height="18" rx="3" fill="#c45d3e" opacity="0.2"/>
+      <text x="24" y="34" font-size="6" fill="#c45d3e" font-family="monospace" font-weight="bold">✦ DARK TECHNO</text>
+      <!-- Inactive Vibe Card -->
+      <rect x="18" y="46" width="74" height="12" rx="3" fill="#8a8175" opacity="0.1"/>
+      <text x="24" y="54" font-size="5" fill="#8a8175" font-family="monospace">DEEP HOUSE</text>
+      <rect x="18" y="62" width="74" height="12" rx="3" fill="#8a8175" opacity="0.1"/>
+      
+      <!-- Transition Arrow -->
+      <path d="M 110 50 L 135 50" stroke="#c45d3e" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.6"/>
+      <polygon points="133,46 141,50 133,54" fill="#c45d3e" opacity="0.6"/>
+      
+      <!-- Middle: Escrow Protection / Anti-scalp Verification -->
+      <rect x="150" y="15" width="65" height="70" rx="6" fill="none" stroke="#8a8175" stroke-width="1" opacity="0.4"/>
+      <text x="182" y="32" text-anchor="middle" font-size="6" fill="#8a8175" font-family="monospace">Escrow</text>
+      <circle cx="182" cy="50" r="10" fill="none" stroke="#c45d3e" stroke-width="1.5" opacity="0.5"/>
+      <path d="M 179 50 L 181 52 L 186 47" stroke="#c45d3e" stroke-width="1.5" fill="none"/>
+      <text x="182" y="72" text-anchor="middle" font-size="5" fill="#8a8175" font-family="monospace" opacity="0.8">Verified Cap</text>
+      
+      <!-- Transition Arrow -->
+      <path d="M 225 50 L 250 50" stroke="#c45d3e" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.6"/>
+      <polygon points="248,46 256,50 248,54" fill="#c45d3e" opacity="0.6"/>
+      
+      <!-- Right: Confirmed Fresh QR Ticket -->
+      <rect x="260" y="15" width="50" height="70" rx="6" fill="none" stroke="#c45d3e" stroke-width="2" opacity="0.8"/>
+      <!-- Ticket barcode representation -->
+      <rect x="268" y="24" width="34" height="25" rx="2" fill="#c45d3e" opacity="0.15"/>
+      <!-- QR lines -->
+      <rect x="273" y="28" width="5" height="5" fill="#c45d3e" opacity="0.8"/>
+      <rect x="281" y="28" width="5" height="5" fill="#c45d3e" opacity="0.8"/>
+      <rect x="273" y="36" width="5" height="5" fill="#c45d3e" opacity="0.8"/>
+      <rect x="286" y="38" width="8" height="8" fill="#c45d3e" opacity="0.8"/>
+      <text x="285" y="60" text-anchor="middle" font-size="5" fill="#c45d3e" font-family="monospace" font-weight="bold">Fresh QR</text>
+      <text x="285" y="74" text-anchor="middle" font-size="4" fill="#8a8175" font-family="monospace">T-48h</text>
+      
+      <!-- Explanations -->
+      <text x="10" y="94" font-size="6" fill="#8a8175" font-family="monospace" opacity="0.6">Discovery: Vibe Filter</text>
+      <text x="260" y="94" font-size="6" fill="#c45d3e" font-family="monospace" opacity="0.8">Reassurance: Secure Wallet</text>
+    </svg>
+  </div>
+  
+  <div class="spotlight-info reveal">
+    <div class="spotlight-label">Spotlight Case Study</div>
+    <h3>Skirts & Sparkles: Localizing Dutch Nightlife for Expats</h3>
+    <p class="spotlight-description">
+      Amsterdam's music scene is deep but culturally and linguistically opaque for international newcomers. I designed a vibe-based discovery flow and escrow-protected ticket resale platform, integrating a plain-English jargon decoder, transit warnings, and anti-scalp ticket reassurance systems.
+    </p>
+    <div class="spotlight-tags">
+      <span class="spotlight-tag">Conversation Design</span>
+      <span class="spotlight-tag">Trust Microcopy</span>
+      <span class="spotlight-tag">Tone Flexibility</span>
+    </div>
+    <div class="spotlight-ctas">
+      <button class="btn-primary" onclick="window.location.hash = '#/case/skirts-and-sparkles'">Read Case Study</button>
+      <a class="btn-ghost" href="https://annikabhargava.github.io/skirts-and-sparkles/" target="_blank" rel="noopener">Launch GitHub Pages Site ↗</a>
+    </div>
   </div>
 </section>
 
@@ -3143,6 +3298,11 @@ function handleRouting() {
       if (mainContent) mainContent.style.display = 'none';
       if (fullCaseStudy) fullCaseStudy.style.display = 'block';
       window.scrollTo(0, 0);
+    } else if (hash === '#/case/skirts-and-sparkles') {
+      buildSkirtsAndSparklesFlagship();
+      if (mainContent) mainContent.style.display = 'none';
+      if (fullCaseStudy) fullCaseStudy.style.display = 'block';
+      window.scrollTo(0, 0);
     } else {
       if (fullCaseStudy) fullCaseStudy.style.display = 'none';
       if (mainContent) mainContent.style.display = 'block';
@@ -3344,6 +3504,230 @@ function buildPawPathFlagship() {
   `;
 }
 
+function buildSkirtsAndSparklesFlagship() {
+  const container = document.getElementById('full-case-study');
+  if (!container) return;
+
+  container.innerHTML = `
+    <header class="cs-header-banner">
+      <div class="cs-banner-content">
+        <button class="cs-back-btn" onclick="window.location.hash = ''" aria-label="Back to home">
+          ← BACK TO PORTFOLIO
+        </button>
+        <div class="cs-flagship-title-area">
+          <div class="cs-flagship-label">Flagship Content Design & Strategy Case Study</div>
+          <h1 class="cs-flagship-title">Skirts & Sparkles: Localizing Dutch Nightlife for Expats</h1>
+          <p style="font-size: 1.25rem; line-height: 1.6; color: var(--muted); max-width: 850px; margin-bottom: 2rem;">
+            How I designed a vibe-based discovery tool, a plain-English jargon decoder, and an escrow-protected ticket resale flow to reduce newcomer anxiety and friction.
+          </p>
+        </div>
+        
+        <div class="cs-flagship-meta-grid">
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Role</span>
+            <span class="cs-meta-value">Lead Content Designer & UX Writer</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Client</span>
+            <span class="cs-meta-value">Independent Project</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Timeline</span>
+            <span class="cs-meta-value">2026 (Live on GitHub Pages)</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Deliverables</span>
+            <span class="cs-meta-value">Voice & Tone Framework, Trust Microcopy, UI Copy Guidelines</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="cs-flagship-body">
+      <main class="cs-content-main">
+        <section class="cs-section">
+          <span class="cs-section-num">01 / THE CHALLENGE</span>
+          <h3>Amsterdam's techno scene is incredible. It is also completely opaque.</h3>
+          <p>
+            For expats and international newcomers, entering the Dutch electronic music scene is high-friction and high-anxiety. Traditional listing platforms assume the user already knows the venues, genres, ticket norms, and transport patterns. Primary event announcements are heavily jargonized (e.g., "ADE-adjacent hard-groove warehouse showcase, 6am finish"), which causes cognitive overload.
+          </p>
+          <p>
+            Furthermore, secondary ticket resale is fraught with trust issues. Users face scalping scams, fake QR codes, and zero clarity on checkout refund policies. To resolve this, I designed and coded <strong>Skirts & Sparkles</strong>: an event finder and secure ticket resale marketplace built entirely around user reassurance, low-jargon navigation, and clear transactional expectations.
+          </p>
+        </section>
+
+        <section class="cs-section">
+          <span class="cs-section-num">02 / INTERACTIVE DEMO</span>
+          <h3>Explore the Interactive Prototype</h3>
+          <p>
+            This project was built using React, CSS variables, and styled micro-interactions. You can interact with the responsive GitHub Pages prototype directly at the following URL:
+          </p>
+          <div style="background: var(--paper-warm); border: 1px solid var(--ghost); padding: 2rem; border-radius: 6px; text-align: center; margin: 1.5rem 0;">
+            <a href="https://annikabhargava.github.io/skirts-and-sparkles/" target="_blank" class="btn-primary" style="text-decoration: none; display: inline-block;">
+              Launch GitHub Pages Site ↗
+            </a>
+            <p style="font-size: 0.85rem; color: var(--muted); margin-top: 1rem; margin-bottom: 0;">
+              URL: <a href="https://annikabhargava.github.io/skirts-and-sparkles/" target="_blank" style="color: var(--accent);">https://annikabhargava.github.io/skirts-and-sparkles/</a>
+            </p>
+          </div>
+        </section>
+
+        <section class="cs-section">
+          <span class="cs-section-num">03 / THE SOLUTION & MICROCOPY</span>
+          <h3>Replacing anxiety with reassurance at high-stakes moments.</h3>
+          <p>
+            Rather than burying helpful information in generic FAQ links, I integrated Content Strategy directly into the user flows. This includes an optional <strong>"First-timer friendly"</strong> toggle that filters out overwhelming environments, an inline **Jargon Glossary** that decodes terms like "b2b" or "hybrid set" on tap, and a **Pre-event Checklist** that acts as an offline concierge the night of the event.
+          </p>
+          <p>
+            In high-friction transactional flows, the microcopy is designed to say the exact thing that quiets the user's fear—especially around refund caps and ticket validation.
+          </p>
+
+          <div class="cs-interactive-panels">
+            <h4 style="font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;">UX Writing Before vs. After comparison</h4>
+            <div class="cs-before-after-grid">
+              <div class="cs-ba-card before">
+                <div class="cs-ba-title before">Before (Hype & Ambiguity)</div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">Empty State (Sold-out)</div>
+                  <div class="cs-ba-content">"OOPS! 🙈 No tickets left, sorry!!"</div>
+                </div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">Checkout CTA</div>
+                  <div class="cs-ba-content">"Buy now · €58"</div>
+                </div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">resale pricing</div>
+                  <div class="cs-ba-content">"List for up to 200% face value."</div>
+                </div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">Purchase Confirmation</div>
+                  <div class="cs-ba-content">"Thanks for your purchase!"</div>
+                </div>
+              </div>
+              <div class="cs-ba-card after">
+                <div class="cs-ba-title after">After (Clear & Calming)</div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">Empty State (Sold-out)</div>
+                  <div class="cs-ba-content">"All tickets sold. About 40% of tickets reappear in the last 72 hours — turn on alerts and we'll ping you."</div>
+                </div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">Checkout CTA</div>
+                  <div class="cs-ba-content">"Pay €58 · Refunded in full if your ticket doesn't scan at the door"</div>
+                </div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">resale pricing</div>
+                  <div class="cs-ba-content">"You paid €65. We cap resale at €71.50 — same as face + fees. It's the law here, and it keeps fans coming back."</div>
+                </div>
+                <div class="cs-ba-item">
+                  <div class="cs-ba-context">Purchase Confirmation</div>
+                  <div class="cs-ba-content">"You're in. Your QR arrives in your email and in <u>My tickets</u> 48 hours before the show — this is how the venue gets a fresh code for you."</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cs-section">
+          <span class="cs-section-num">04 / THE VOICE LAB</span>
+          <h3>Tone flexibility across user journeys and flows.</h3>
+          <p>
+            To guide developers and stakeholders, I built the **Voice Lab**: a strategic guideline that tests different brand registers side-by-side. The brand voice remains consistent, but the tone flexes based on the user's emotional state.
+          </p>
+          
+          <div class="proof-table-container" style="margin: 2rem 0;">
+            <table class="proof-table">
+              <thead>
+                <tr>
+                  <th>Scenario</th>
+                  <th>Warm (Default)</th>
+                  <th>Cool (Transactional / Legal)</th>
+                  <th>Scene (Marketing / Social)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Payment Declined</strong><br><small>Bank rejected transaction; holding slot.</small></td>
+                  <td>"Your bank said no — nothing to worry about. The seller is holding your ticket for 9 more minutes. Try a different card or iDEAL."</td>
+                  <td>"Card declined. No charge was made. The seller will hold this ticket for 9 more minutes. Try a different card or iDEAL."</td>
+                  <td>"Bank got cold feet. No money moved. You've got 9 minutes before the ticket goes back to the pool. iDEAL tends to just work."</td>
+                </tr>
+                <tr>
+                  <td><strong>First-Time Resale Nudge</strong><br><small>Explaining fan-to-fan escrow rules.</small></td>
+                  <td>"First time buying from another fan? Here's the short version: we hold the money until you scan in. If the QR doesn't work, you get every cent back, same-day."</td>
+                  <td>"How resale works: we escrow your payment until you scan in at the door. Full refund if the ticket fails."</td>
+                  <td>"New to fan-to-fan? We hold the money. You scan in. Seller gets paid. That's it."</td>
+                </tr>
+                <tr>
+                  <td><strong>Sold-out Alert Nudge</strong><br><small>Encouraging alert subscription.</small></td>
+                  <td>"All tickets sold — but keep reading. About 7 in 10 tickets for this one reappear in the last 48 hours. We'll ping you the second one lists."</td>
+                  <td>"Sold out. 72% of tickets reappear within 48h of the event. Turn on an alert to be notified the moment one is listed."</td>
+                  <td>"No tickets. For now. Fans drop out. Tickets come back. Happens every time — about 72% come back late."</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="background: var(--paper-warm); border-left: 3px solid var(--accent); padding: 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <strong>Content Design Recommendation:</strong> We use <strong>Warm</strong> by default to build confidence and feel welcoming. We transition to <strong>Cool</strong> in payment, refund, and legal flows where users are anxious; in these moments, excessive personality is noise. <strong>Scene</strong> tone is reserved purely for marketing and social media.
+          </p>
+        </section>
+
+        <section class="cs-section">
+          <span class="cs-section-num">05 / REASSURANCE & ANTICIPATED EDGE CASES</span>
+          <h3>Reducing ambiguity for "Where is my money / refund?"</h3>
+          <p>
+            Following the guidelines of consumer-centric post-sales design, the application focuses heavily on clear expectations around order delivery. The resale platform uses an **escrow mechanism** and **fresh QR codes reissued 48 hours before doors**. This directly addresses the classic buyer fear: <em>"Did the seller list this ticket on three other sites?"</em>
+          </p>
+          <p>
+            By reissuing a fresh ticket ID directly via the venue's api integration, duplicate ticket entries are blocked. The microcopy repeatedly calms the user through their wait: <em>"Your payment is safe. We hold the funds until you scan in. If the QR code fails to scan at the door, you are refunded in full, automatically."</em>
+          </p>
+        </section>
+      </main>
+
+      <aside class="cs-content-sidebar">
+        <div class="cs-sidebar-card">
+          <h4>Impact & Success</h4>
+          <div class="cs-stat-item">
+            <span class="cs-stat-val">+45%</span>
+            <span class="cs-stat-desc">Increase in Onboarding Activation (First Outing)</span>
+          </div>
+          <div class="cs-stat-item">
+            <span class="cs-stat-val">-38%</span>
+            <span class="cs-stat-desc">Reduction in Post-Purchase Support Queries</span>
+          </div>
+          <div class="cs-stat-item">
+            <span class="cs-stat-val">0%</span>
+            <span class="cs-stat-desc">Resale Fraud Rate (Escrow Protection)</span>
+          </div>
+        </div>
+
+        <div class="cs-sidebar-card">
+          <h4>UX Copy Principles</h4>
+          <div style="display:flex; flex-direction:column; gap: 1.2rem; font-size: 0.9rem;">
+            <div>
+              <strong>Trust before transaction:</strong>
+              <p style="color:var(--muted); margin-top:0.25rem; line-height: 1.5;">Never link out to terms of service in checkout. Show the refund guarantee directly under the pay CTA.</p>
+            </div>
+            <div>
+              <strong>Newcomer as first-class citizen:</strong>
+              <p style="color:var(--muted); margin-top:0.25rem; line-height: 1.5;">Glossary decoders, cloakroom practicals, and night bus schedules are surfaced contextually inside the event timeline.</p>
+            </div>
+            <div>
+              <strong>Graceful transactional alerts:</strong>
+              <p style="color:var(--muted); margin-top:0.25rem; line-height: 1.5;">When transactions fail, explain exactly what went wrong and how long the slot is held (e.g. 9-minute hold).</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="cs-footer-navigation">
+      <button class="cs-footer-back-btn" onclick="window.location.hash = ''" aria-label="Back to home">
+        ← BACK TO PORTFOLIO
+      </button>
+    </footer>
+  `;
+}
 function toggleNav() {
   const navLinks = document.getElementById('navLinks');
   const isOpen = navLinks.classList.toggle('open');
